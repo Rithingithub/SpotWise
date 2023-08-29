@@ -1,21 +1,25 @@
 const { Client } = require('pg');
+require('dotenv').config();
 
-const client = new Client({
-  host: "localhost",
-  user: "postgres",
-  port: 5432,
-  password: "1234",
-  database: "postgres"
+const dbClient = new Client({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  port: process.env.DB_PORT,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
-client.connect();
+const connectToDatabase = () => {
+  dbClient.connect((err) => {
+    if (err) {
+      console.error('Error connecting to the database:', err.message);
+    } else {
+      console.log('Connected to the database');
+    }
+  });
+};
 
-client.query(`SELECT id, username, password_hash, salt FROM users`, (err, res) => {
-  if (!err) {
-    console.log(res.rows);
-  } else {
-    console.log(err.message);
-  }
-
-  client.end();
-});
+module.exports = {
+  dbClient,
+  connectToDatabase
+};
