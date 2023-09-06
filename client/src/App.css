@@ -1,0 +1,55 @@
+html{
+  background-color: black;
+}
+
+
+
+img{
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.Header{
+  display: flex;
+  align-items: center;
+}
+h1{
+  color: green;
+  text-align: center;
+  padding-left: 50px;
+}
+
+.Content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  height: 60vh;
+}
+
+input[type="tel"] {
+  /* Add any additional styles for the input here */
+  width: 200px; /* Example width */
+  height: 30px; /* Example height */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  color: #333;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  text-align: left;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center horizontally */
+  gap: 10px; /* Add some vertical spacing between input and button */
+}
+
+.input-container input,
+.input-container button {
+  width: 200px; /* Set the desired width */
+  height: 40px; /* Set the desired height */
+}
