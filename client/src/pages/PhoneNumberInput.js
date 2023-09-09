@@ -19,12 +19,17 @@ const PhoneNumber = () => {
   return (
     <div>
       <div className='Header'>
-        <img src={prjLogo} alt="Logo" width={64} height={43} />
-        <h1>SpotWise</h1>
+        <img src={prjLogo} alt="Logo" width={55} height={35} />
+        <h2>SpotWise</h2>
       </div>
+     
       <div className='Content'>
+      
         <form onSubmit={handleClick}>
+        <h1>Login</h1>
+        <label >Phone Number:</label>
           <div className='input-container'>
+            
             <input
               type="tel"
               id="phoneNumber"
@@ -37,6 +42,7 @@ const PhoneNumber = () => {
           </div>
         </form>
       </div>
+
     </div>
   );
 }
