@@ -14,7 +14,10 @@ connectToDatabase();
 // Use the router
 app.use('/api/v1', routers);
 
+// Import the code from backend/middleware.js
+const middleware = require('./backend/middleware');
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-});
+})

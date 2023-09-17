@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './supertokens'; // Supertokens
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './pages/AuthContext';
 import PhoneNumberInput from './pages/PhoneNumberInput';
