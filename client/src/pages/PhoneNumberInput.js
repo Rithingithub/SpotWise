@@ -2,16 +2,39 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import prjLogo from '../images/icon_car.png';
+import { createCode } from "supertokens-web-js/recipe/passwordless";
 
 const PhoneNumber = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const navigate = useNavigate();
 
-  const handleClick = (e) => {
+  async function sendOTP(phoneNumber) {
+    try {
+      let response = await createCode({
+        phoneNumber
+      });
+
+      // OTP sent successfully.
+      window.alert("Please check your phone for an OTP");
+    } catch (err) {
+      if (err.isSuperTokensGeneralError === true) {
+        // This may be a custom error message sent from the API by you,
+        // or if the input phone number is not valid.
+        window.alert(err.message);
+      } else {
+        window.alert("Oops! Something went wrong.");
+      }
+    }
+  }
+
+  const handleClick = async (e) => {
     e.preventDefault();
 
     // Validate the phone number here if needed
 
+    // Call the sendOTP function with the phone number
+    await sendOTP(phoneNumber);
+    
     // Redirect to OTPVerification page with the phone number as a query parameter
     navigate(`/OTPVerification?phoneNumber=${phoneNumber}`);
   };
