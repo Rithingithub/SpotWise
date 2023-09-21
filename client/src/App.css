@@ -12,6 +12,7 @@ img{
 .Header{
   display: flex;
   align-items: center;
+  padding-top: 10px;
 }
 h2{
   color: white;

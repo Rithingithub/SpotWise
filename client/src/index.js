@@ -36,7 +36,7 @@ ReactDOM.render(
           <Route path="/OTPVerification" element={<OTPVerification />} />
 
           {/* Step 3: Main Page */}
-          <Route path="/main" element={<MainPage />} />
+          <Route path="/MainPage" element={<MainPage />} />
         </Routes>
       </Router>
     </AuthProvider>
