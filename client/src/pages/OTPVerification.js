@@ -1,9 +1,12 @@
+
+
+
+
+
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import prjLogo from '../images/icon_car.png';
 import { resendCode, consumeCode } from "supertokens-web-js/recipe/passwordless";
-import { useLocation } from 'react-router-dom'; // Import useLocation
-import prjLogo from '../images/icon_car.png';
 
 const OTPVerification = () => {
   const location = useLocation();
@@ -35,7 +38,7 @@ const OTPVerification = () => {
         } else {
           // user sign in success
         }
-        window.location.assign("/MainPage.js");
+        window.location.assign("/Mainpage"); // Corrected route to "Mainpage"
       } else if (response.status === "INCORRECT_USER_INPUT_CODE_ERROR") {
         window.alert("Wrong OTP! Please try again. Number of attempts left: " + (response.maximumCodeInputAttempts - response.failedCodeInputAttemptCount));
       } else if (response.status === "EXPIRED_USER_INPUT_CODE_ERROR") {
@@ -72,39 +75,17 @@ const OTPVerification = () => {
     }
   }
 
-
-  const handleOtpVerification = (e) => {
-    e.preventDefault();
-
-    // Combine the separate OTP values into one OTP string
-    const otp = otp1 + otp2 + otp3 + otp4;
-
-    // Validate the OTP here (you can add your logic for OTP validation)
-    const isOtpValid = otp === '1234'; // Replace '1234' with your actual OTP validation logic
-
-    if (isOtpValid) {
-      // If OTP is valid, navigate to the main page
-      // You can use window.location.href or any routing library for navigation
-      window.location.href = '/MainPage'; // This is a simple example using window.location.href
-    } else {
-      // Handle OTP validation failure (e.g., display an error message)
-      alert('Invalid OTP. Please try again.');
-    }
-  };
-
   return (
     <div>
       <div className='Header'>
         <img src={prjLogo} alt="Logo" width={55} height={35} />
         <h2>SpotWise</h2>
       </div>
-     <br />
+      <br />
       <div className='VContent'>
-       
-      
         <form onSubmit={handleOtpVerification}>
-        <label>Enter 6-digit verification code <br /><br /><br /></label>
-        <label>Enter verification code <br /><br /><br /></label>
+          <label>Enter 6-digit verification code <br /><br /><br /></label>
+          <label>Enter verification code <br /><br /><br /></label>
           <div className='Vinput-container'>
             <input
               type="text"
@@ -165,17 +146,11 @@ const OTPVerification = () => {
               onChange={(e) => setOtp6(e.target.value)}
             />
           </div>
-          <div  >
+          <div>
             <br /><br /><br />
             <div><p>Didn't receive the code?<span className='green-text' onClick={resendOTP}> Resend</span></p></div>
             <br /><br />
             <button type="submit">Verify OTP</button>
-          <div  >
-            <br /><br /><br />
-            <div><p>Did'nt recieve code?<span className='green-text' > Resend</span></p></div>
-            <br /><br />
-            <button type="submit">Verify OTP</button>
-          
           </div>
         </form>
       </div>
