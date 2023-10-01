@@ -30,13 +30,13 @@ ReactDOM.render(
       <Router>
         <Routes>
           {/* Step 1: Collect Phone Number */}
-          <Route path="/" element={<PhoneNumberInput />} />
+          <Route path="/" element={<MainPage />} />
 
-          {/* Step 2: Verify OTP */}
-          <Route path="/OTPVerification" element={<OTPVerification />} />
+          {/* Collect Phone Number */}
+          <Route path="/auth" element={<PhoneNumberInput />} />
 
-          {/* Step 3: Main Page */}
-          <Route path="/MainPage" element={<MainPage />} />
+          {/* Verify OTP */}
+          <Route path="/OTP" element={<OTPVerification />} />
         </Routes>
       </Router>
     </AuthProvider>
