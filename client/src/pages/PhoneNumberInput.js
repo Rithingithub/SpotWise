@@ -36,7 +36,7 @@ const PhoneNumber = () => {
     await sendOTP(phoneNumber);
     
     // Redirect to OTPVerification page with the phone number as a query parameter
-    navigate(`/OTPVerification?phoneNumber=${phoneNumber}`);
+    navigate(`/OTP?phoneNumber=${phoneNumber}`);
   };
 
   return (

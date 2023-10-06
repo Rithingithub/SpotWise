@@ -38,7 +38,7 @@ const OTPVerification = () => {
         } else {
           // user sign in success
         }
-        window.location.assign("/Mainpage"); // Corrected route to "Mainpage"
+        window.location.assign("/"); // Corrected route to "Mainpage"
       } else if (response.status === "INCORRECT_USER_INPUT_CODE_ERROR") {
         window.alert("Wrong OTP! Please try again. Number of attempts left: " + (response.maximumCodeInputAttempts - response.failedCodeInputAttemptCount));
       } else if (response.status === "EXPIRED_USER_INPUT_CODE_ERROR") {
