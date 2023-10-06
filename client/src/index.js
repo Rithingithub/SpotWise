@@ -11,6 +11,10 @@ import { AuthProvider } from './pages/AuthContext';
 import PhoneNumberInput from './pages/PhoneNumberInput';
 import OTPVerification from './pages/OTPVerification';
 import MainPage from './pages/MainPage';
+import PaymentTiles from './components/PaymentTiles'
+import Settings from './components/Settings'
+import History from './components/History'
+import Support from './components/Support'
 SuperTokens.init({
   appInfo: {
       apiDomain: "http://localhost:8000",
@@ -37,6 +41,16 @@ ReactDOM.render(
 
           {/* Verify OTP */}
           <Route path="/OTP" element={<OTPVerification />} />
+
+          <Route path="/PaymentTiles" element={<PaymentTiles />} />
+
+          <Route path="/Settings" element={<Settings />} />
+
+          <Route path="/History" element={<History />} />
+
+          <Route path="/Support" element={<Support />} />
+
+
         </Routes>
       </Router>
     </AuthProvider>

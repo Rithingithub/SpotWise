@@ -93,6 +93,7 @@ nav {
 	header .responsive_nav {
 		transform: translateY(100vh);
 	}
+	
 
 	nav .nav-close-btn {
 		position: absolute;
@@ -103,4 +104,41 @@ nav {
 	nav a {
 		font-size: 1.5rem;
 	}
+
+	.Header{
+		position: absolute;
+  	top: 30px;
+ 	 left: 50%;
+  	transform: translate(-50%, -50%);
+	}
+
+	.back-button{
+		color: white;
+		background-color: transparent;
+		border: none;
+		padding-top: 15px;
+		padding-left: 15px;
+	}
+
+	.icon{
+		font-size: 2.7rem;
+		
+	}
+	.icon:hover {
+		color: var(--secondaryColor);
+	}
+	
+
+	.paytiles{
+	display: flex;
+  	flex-direction: column;
+  	align-items: center; /* Center items horizontally */
+  	justify-content: center; /* Center items vertically */
+  	height: 100vh;
+	}
+	.paytiles img {
+		margin-bottom: 20px; /* Adjust the value as needed to add space at the bottom of each image */
+	  }
+
+	
 }
