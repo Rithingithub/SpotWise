@@ -1,8 +1,3 @@
-
-
-
-
-
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import prjLogo from '../images/icon_car.png';
@@ -64,7 +59,7 @@ const OTPVerification = () => {
         window.alert("Login failed. Please try again");
         window.location.assign("/auth");
       } else {
-        window.alert("Please check your email for the OTP");
+        window.alert("Please check your phone for the OTP");
       }
     } catch (err) {
       if (err.isSuperTokensGeneralError === true) {
@@ -148,7 +143,7 @@ const OTPVerification = () => {
           </div>
           <div>
             <br /><br /><br />
-            <div><p>Didn't receive the code?<span className='green-text' onClick={resendOTP}> Resend</span></p></div>
+            <div><p>Didn't receive the code?<span className='green-text' onClick={resendOTP}> Resend </span></p></div>
             <br /><br />
             <button type="submit">Verify OTP</button>
           </div>
