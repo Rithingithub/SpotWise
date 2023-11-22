@@ -10,14 +10,15 @@ const { connectToDatabase } = require('./database/database');
 require('dotenv').config();
 connectToDatabase();
 
+
 // Initialize SuperTokens
 supertokens.init({
   framework: "express",
   supertokens: {
-    connectionURI: "https://st-dev-d7b68450-55f7-11ee-8ee2-61be51f08b14.aws.supertokens.io",
-    // connectionURI: "postgresql://db_xw2uj1nu6gmt_user:0sv9zvgag80nhpwz5@us-east-1-dev-1.cluster-cef2h4iyk59c.us-east-1.rds.amazonaws.com:5432/db_xw2uj1nu6gmt",
-    apiKey: "3nP=9NfYE2LM-Poc=dAR1iMRme" 
+    connectionURI: "http://localhost:3567",
+    
 },
+
   appInfo: {
     // Application-specific information
     appName: "SpotWise",
