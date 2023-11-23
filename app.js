@@ -10,17 +10,13 @@ const { connectToDatabase } = require('./database/database');
 require('dotenv').config();
 connectToDatabase();
 
-
 // Initialize SuperTokens
 supertokens.init({
   framework: "express",
   supertokens: {
     connectionURI: "http://localhost:3567",
-    
-},
-
+  },
   appInfo: {
-    // Application-specific information
     appName: "SpotWise",
     apiDomain: "http://localhost:8000",
     websiteDomain: "http://localhost:3000",
@@ -50,9 +46,10 @@ app.use(
 
 // SuperTokens Middleware
 app.use(middleware());
+
 // Define your API routes here
-// ...your API routes
 app.use('/api/v1', routers);
+
 // Error handling middleware
 app.use(errorHandler());
 
@@ -62,7 +59,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start your Express server
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
