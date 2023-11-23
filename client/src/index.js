@@ -12,9 +12,9 @@ import PhoneNumberInput from './pages/PhoneNumberInput';
 import OTPVerification from './pages/OTPVerification';
 import MainPage from './pages/MainPage';
 import PaymentTiles from './components/PaymentTiles'
-import Settings from './components/Settings'
-import History from './components/History'
-import Support from './components/Support'
+import Settings from './components/settings'
+import History from './components/history'
+import Support from './components/support'
 SuperTokens.init({
   appInfo: {
       apiDomain: "http://localhost:8000",

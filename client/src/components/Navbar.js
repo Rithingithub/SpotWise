@@ -8,9 +8,9 @@ import support from  './navimages/simple-line-icons_support.png'
 import settingsLogo from  './navimages/feather-settings.png' // Rename the import to avoid conflicts
 import logout from   './navimages/ls-logout.png'
 import PaymentTiles from './PaymentTiles'; // Import the PaymentTiles component
-import Settings from './Settings'; // Rename the import to match the component name
-import History from './History'
-import Support from './Support'
+import Settings from './settings'; // Rename the import to match the component name
+import History from './history'
+import Support from './support'
 
 
 function Navbar() {
