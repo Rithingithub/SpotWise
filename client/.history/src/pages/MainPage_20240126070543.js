@@ -1,0 +1,29 @@
+import React from 'react';
+import Navbar from '../components/Navbar';
+import './box.css';
+
+function BoxComponent() {
+  return (
+    <div className="box">
+      This is a box!
+    </div>
+  );
+}
+
+const MainPage = () => {
+  return (
+    <div>
+      <div className='Navbar'>
+        <Navbar />
+      </div>
+
+      <BoxComponent /> {/* Include BoxComponent here */}
+
+      <p>
+        This is some content below the box. You can add more text or other components here.
+      </p>
+    </div>
+  );
+};
+
+export default MainPage;
