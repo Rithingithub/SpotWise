@@ -8,9 +8,9 @@ import support from  './navimages/simple-line-icons_support.png'
 import settingsLogo from  './navimages/feather-settings.png' // Rename the import to avoid conflicts
 import logout from   './navimages/ls-logout.png'
 import PaymentTiles from './PaymentTiles'; // Import the PaymentTiles component
-import Settings from './Settings'; // Rename the import to match the component name
-import History from './History'
-import Support from './Support'
+import Settings from './settings'; // Rename the import to match the component name
+import History from './history'
+import Support from './support'
 
 
 function Navbar() {
@@ -28,9 +28,9 @@ function Navbar() {
       </div>
       <nav ref={navRef}>
         <a href="/PaymentTiles"><img src={paymentLogo} alt="PaymentLogo" />Payment Methods</a>
-        <a href="/History"><img src={history} alt="ParkingHistory" />Parking History</a>
-        <a href="/Support"><img src={support} alt="Support" />Support</a>
-        <a href="/Settings"><img src={settingsLogo} alt="settingsLogo" />Settings</a>
+        <a href="/history"><img src={history} alt="ParkingHistory" />Parking History</a>
+        <a href="/support"><img src={support} alt="Support" />Support</a>
+        <a href="/settings"><img src={settingsLogo} alt="settingsLogo" />Settings</a>
         <a href="/#"><img src={logout} alt="logout" />Logout</a>
         <button className="nav-btn nav-close-btn" onClick={showNavbar}>
           <FaTimes />

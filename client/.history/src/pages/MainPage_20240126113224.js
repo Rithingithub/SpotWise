@@ -32,7 +32,9 @@ const MainPage = () => {
         <BoxComponent content="A12" />
       </div>
 
-      
+      <p>
+        This is some content below the boxes. You can add more text or other components here.
+      </p>
     </div>
   );
 };

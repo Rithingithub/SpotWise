@@ -1,0 +1,13 @@
+/* styles.css */
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+    padding-left: 1cm;
+  }
+  
