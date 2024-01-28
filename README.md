@@ -24,4 +24,32 @@ integration of trusted payment gateways like Razorpay, the
 system guarantees secure transactions and a frictionless
 payment experience.</p>
 
-## developing
+## How to run the code?
+
+<p> First copy and paste the `.example.env` to your local `.env`
+
+### start docker and setup db
+
+<p> We use postgresql for database and supabase for authentication </p>
+<p> Run this first </p>
+
+``` docker run -p 3567:3567 -d registry.supertokens.io/supertokens/supertokens-postgresql:7.0 ```
+
+### Backend Code
+
+<p> Nodejs is used in backend </p>
+<p> To start backend </p>
+
+``` node app.j ```
+or
+
+``` nodemon app.js ```
+
+### Frontend Code 
+
+<p> Used React native to develop frontend </p>
+
+```
+cd client\ 
+npm start
+```
