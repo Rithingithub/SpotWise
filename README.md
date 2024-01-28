@@ -26,7 +26,7 @@ payment experience.</p>
 
 ## How to run the code?
 
-<p> First copy and paste the `.example.env` to your local `.env`
+<p> First copy and paste the ` .example.env ` to your local ` .env `
 
 ### start docker and setup db
 
