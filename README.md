@@ -71,3 +71,7 @@ npm start
 ```
  docker run -p 3000:3000 spotwise
 ```
+ACORN
+```
+acorn run -i -n app .
+```
