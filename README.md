@@ -53,3 +53,9 @@ or
 cd client\ 
 npm start
 ```
+
+<p> To run the docker container of frontend 
+
+```
+ docker run -p 3000:3000 spotwise
+```
