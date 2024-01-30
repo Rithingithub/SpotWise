@@ -26,9 +26,18 @@ payment experience.</p>
 
 ## How to run the code?
 
+<p> First copy and paste the 
+
+``` .example.env ```
+ to your local 
+ ``` .env ```
+
+</p>
+
 ### start docker and setup db
 
-<p> We use postgresql for database and supabase for authentication <br> Run this first </p>
+<p> We use postgresql for database and supabase for authentication </p>
+<p> Run this first </p>
 
 ``` docker run -p 3567:3567 -d registry.supertokens.io/supertokens/supertokens-postgresql:7.0 ```
 
