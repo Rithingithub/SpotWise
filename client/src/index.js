@@ -15,6 +15,7 @@ import PaymentTiles from './components/PaymentTiles'
 import Settings from './components/settings'
 import History from './components/history'
 import Support from './components/support'
+
 SuperTokens.init({
   appInfo: {
       apiDomain: "http://localhost:8000",
@@ -27,30 +28,18 @@ SuperTokens.init({
   ],
 });
 
-
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <Router>
         <Routes>
-          {/* Step 1: Collect Phone Number */}
-          <Route path="/" element={<MainPage />} />
-
-          {/* Collect Phone Number */}
+          <Route path="/" element={<MainPage />} />       
           <Route path="/auth" element={<PhoneNumberInput />} />
-
-          {/* Verify OTP */}
           <Route path="/OTP" element={<OTPVerification />} />
-
           <Route path="/PaymentTiles" element={<PaymentTiles />} />
-
-          <Route path="/settings" element={<settings />} />
-
-          <Route path="/history" element={<history />} />
-
-          <Route path="/support" element={<support />} />
-
-
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/support" element={<Support />} />
         </Routes>
       </Router>
     </AuthProvider>
