@@ -8,10 +8,13 @@ const PhoneNumber = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const navigate = useNavigate();
 
-  async function sendOTP(phoneNumber) {
+  async function sendOTP() {
     try {
+      // Add the country code "+91" to the beginning of the phone number
+      const formattedPhoneNumber = '+91' + phoneNumber;
+
       let response = await createCode({
-        phoneNumber
+        phoneNumber: formattedPhoneNumber
       });
 
       // OTP sent successfully.
@@ -32,11 +35,11 @@ const PhoneNumber = () => {
 
     // Validate the phone number here if needed
 
-    // Call the sendOTP function with the phone number
-    await sendOTP(phoneNumber);
+    // Call the sendOTP function
+    await sendOTP();
     
-    // Redirect to OTPVerification page with the phone number as a query parameter
-    navigate(`/OTP?phoneNumber=${phoneNumber}`);
+    // Redirect to OTPVerification page with the formatted phone number as a query parameter
+    navigate(`/OTP?phoneNumber=${encodeURIComponent('+91' + phoneNumber)}`);
   };
 
   return (
@@ -47,12 +50,19 @@ const PhoneNumber = () => {
       </div>
      
       <div className='Content'>
-      
         <form onSubmit={handleClick}>
-        <h1>Login</h1>
-        <label >Phone Number:</label>
+          <h1>Login</h1>
+          {/* <label >Phone Number:</label> */}
           <div className='input-container'>
-            
+            {/* <div className='country-code' style={{
+              width: '30px',
+              height: '100%',
+              border: '1px solid white',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginRight: '5px',
+            }}>+91</div> */}
             <input
               type="tel"
               id="phoneNumber"
@@ -65,7 +75,6 @@ const PhoneNumber = () => {
           </div>
         </form>
       </div>
-
     </div>
   );
 }

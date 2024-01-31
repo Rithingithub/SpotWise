@@ -8,20 +8,12 @@ const OTPVerification = () => {
   const queryParams = new URLSearchParams(location.search);
   const phoneNumber = queryParams.get('phoneNumber');
 
-  // Create separate state variables for each OTP input field
-  const [otp1, setOtp1] = useState('');
-  const [otp2, setOtp2] = useState('');
-  const [otp3, setOtp3] = useState('');
-  const [otp4, setOtp4] = useState('');
-  const [otp5, setOtp5] = useState('');
-  const [otp6, setOtp6] = useState('');
+  // Create state variable for OTP
+  const [otp, setOtp] = useState('');
 
   const handleOtpVerification = async (e) => {
     e.preventDefault();
-
-    // Combine the separate OTP values into one OTP string
-    const otp = otp1 + otp2 + otp3 + otp4 + otp5 + otp6;
-
+    
     try {
       let response = await consumeCode({
         userInputCode: otp
@@ -79,66 +71,18 @@ const OTPVerification = () => {
       <br />
       <div className='VContent'>
         <form onSubmit={handleOtpVerification}>
-          <label>Enter 6-digit verification code <br /><br /><br /></label>
-          <label>Enter verification code <br /><br /><br /></label>
-          <div className='Vinput-container'>
-            <input
-              type="text"
-              id="otp1"
-              name="otp1"
-              maxLength="1"
-              value={otp1}
-              onChange={(e) => setOtp1(e.target.value)}
-            />
+          <div className='Vtitle'>
+            <label>Enter 6-digit verification code <br /><br /><br /></label>
+            <label>Enter verification code <br /><br /><br /></label>
           </div>
           <div className='Vinput-container'>
             <input
               type="text"
-              id="otp2"
-              name="otp2"
-              maxLength="1"
-              value={otp2}
-              onChange={(e) => setOtp2(e.target.value)}
-            />
-          </div>
-          <div className='Vinput-container'>
-            <input
-              type="text"
-              id="otp3"
-              name="otp3"
-              maxLength="1"
-              value={otp3}
-              onChange={(e) => setOtp3(e.target.value)}
-            />
-          </div>
-          <div className='Vinput-container'>
-            <input
-              type="text"
-              id="otp4"
-              name="otp4"
-              maxLength="1"
-              value={otp4}
-              onChange={(e) => setOtp4(e.target.value)}
-            />
-          </div>
-          <div className='Vinput-container'>
-            <input
-              type="text"
-              id="otp5"
-              name="otp5"
-              maxLength="1"
-              value={otp5}
-              onChange={(e) => setOtp5(e.target.value)}
-            />
-          </div>
-          <div className='Vinput-container'>
-            <input
-              type="text"
-              id="otp6"
-              name="otp6"
-              maxLength="1"
-              value={otp6}
-              onChange={(e) => setOtp6(e.target.value)}
+              id="otp"
+              name="otp"
+              maxLength="6"  // Set the maximum length of OTP
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
             />
           </div>
           <div>
