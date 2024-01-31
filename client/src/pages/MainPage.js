@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import './box.css';
+import Session from 'supertokens-web-js/recipe/session';
+import { useNavigate } from 'react-router-dom';
 
 const BoxComponent = ({ content }) => {
   return (
@@ -11,12 +13,27 @@ const BoxComponent = ({ content }) => {
 };
 
 const MainPage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function doesSessionExist() {
+      try {
+        if (await Session.doesSessionExist()) {
+        } else {
+          navigate('/auth', { replace: true });
+        }
+      } catch (error) {
+        console.error('Error checking session:', error);
+      }
+    }
+     doesSessionExist();
+  }, [navigate]);
+
   return (
     <div>
       <div className='Navbar'>
         <Navbar />
       </div>
-
       <div className="box-container">
         <BoxComponent content="A1"/>
         <BoxComponent content="A2"/>
@@ -31,8 +48,6 @@ const MainPage = () => {
         <BoxComponent content="A11" />
         <BoxComponent content="A12" />
       </div>
-
-      
     </div>
   );
 };

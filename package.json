@@ -21,8 +21,11 @@
     "pg": "^8.11.3",
     "react-router-dom": "^6.16.0",
     "react-spring": "^9.7.3",
+    "session": "^0.1.0",
+    "sessions": "^0.0.2-7",
     "supertokens-auth-react": "^0.34.2",
     "supertokens-node": "^15.2.0",
-    "supertokens-web-js": "^0.7.3"
+    "supertokens-web-js": "^0.7.3",
+    "verify": "^0.1.2"
   }
 }
