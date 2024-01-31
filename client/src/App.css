@@ -85,6 +85,15 @@ p{
   
 }
 
+/*vtitle*/
+.Vtitle{
+  color: white;
+  padding-top: 20px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30px;
+}
+
 /* Default style for the input container */
 .Vinput-container {
   display: inline-flex;
@@ -93,6 +102,7 @@ p{
   padding-top: 180px; */
  /*  position: relative; */
   margin: 10px;
+  padding-left: 40px;
 }
 
 /* Style for the input boxes */
@@ -102,7 +112,7 @@ p{
   border: none;
   border-bottom: 5px solid grey; /* Color for the bottom line */
   padding: 5px;
-  width: 20px; /* Initial width is zero */
+  width: 100px; /* Initial width is zero */
   text-align: center;
   transition: all 0.3s; /* Transition for animation */
   font-size: 18px; /* Adjust font size as needed */
@@ -113,7 +123,7 @@ p{
 .Vinput-container input[type="text"]:focus {
   outline: none;
   border: 2px solid green; /* Border for the entire box */
-  width: 40px; /* Width when clicked, adjust as needed */
+  width: 100px; /* Width when clicked, adjust as needed */
 }
 
 /* /* /* Style for the last input box, remove right margin */
