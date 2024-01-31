@@ -84,8 +84,8 @@ const OTPVerification = () => {
           <div className='Vinput-container'>
             <input
               type="text"
-              id="otp1"
-              name="otp1"
+              // id="otp1"
+              // name="otp1"
               maxLength="1"
               value={otp1}
               onChange={(e) => setOtp1(e.target.value)}
@@ -94,8 +94,8 @@ const OTPVerification = () => {
           <div className='Vinput-container'>
             <input
               type="text"
-              id="otp2"
-              name="otp2"
+              // id="otp2"
+              // name="otp2"
               maxLength="1"
               value={otp2}
               onChange={(e) => setOtp2(e.target.value)}
@@ -104,8 +104,8 @@ const OTPVerification = () => {
           <div className='Vinput-container'>
             <input
               type="text"
-              id="otp3"
-              name="otp3"
+              // id="otp3"
+              // name="otp3"
               maxLength="1"
               value={otp3}
               onChange={(e) => setOtp3(e.target.value)}
@@ -114,8 +114,8 @@ const OTPVerification = () => {
           <div className='Vinput-container'>
             <input
               type="text"
-              id="otp4"
-              name="otp4"
+              // id="otp4"
+              // name="otp4"
               maxLength="1"
               value={otp4}
               onChange={(e) => setOtp4(e.target.value)}
@@ -124,8 +124,8 @@ const OTPVerification = () => {
           <div className='Vinput-container'>
             <input
               type="text"
-              id="otp5"
-              name="otp5"
+              // id="otp5"
+              // name="otp5"
               maxLength="1"
               value={otp5}
               onChange={(e) => setOtp5(e.target.value)}
@@ -134,8 +134,8 @@ const OTPVerification = () => {
           <div className='Vinput-container'>
             <input
               type="text"
-              id="otp6"
-              name="otp6"
+              // id="otp6"
+              // name="otp6"
               maxLength="1"
               value={otp6}
               onChange={(e) => setOtp6(e.target.value)}
