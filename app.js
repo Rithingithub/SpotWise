@@ -6,6 +6,8 @@ const express = require("express");
 const cors = require("cors");
 const routers = require('./router/router');
 const { connectToDatabase } = require('./database/database');
+const { verifySession } = require ("supertokens-node/recipe/session/framework/express");
+const { SessionRequest } = require("supertokens-node/framework/express");
 
 require('dotenv').config();
 connectToDatabase();
@@ -46,7 +48,10 @@ app.use(
 
 // SuperTokens Middleware
 app.use(middleware());
-
+app.post("/like-comment", verifySession(), (req, res) => {
+  let userId = req.session.getUserId();
+  
+});
 // Define your API routes here
 app.use('/api/v1', routers);
 
