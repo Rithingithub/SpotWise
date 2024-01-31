@@ -11,6 +11,7 @@ import PaymentTiles from './PaymentTiles'; // Import the PaymentTiles component
 import Settings from './settings'; // Rename the import to match the component name
 import History from './history'
 import Support from './support'
+import Session from "supertokens-web-js/recipe/session";
 
 
 function Navbar() {
@@ -19,6 +20,12 @@ function Navbar() {
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
+  async function handleLogout() {
+    await Session.signOut();
+    window.location.href = "/";
+    
+  }
+
 
   return (
     <header>
@@ -31,8 +38,9 @@ function Navbar() {
         <a href="/history"><img src={history} alt="ParkingHistory" />Parking History</a>
         <a href="/support"><img src={support} alt="Support" />Support</a>
         <a href="/settings"><img src={settingsLogo} alt="settingsLogo" />Settings</a>
-        <a href="/#"><img src={logout} alt="logout" />Logout</a>
+        <a href="/#" onClick={handleLogout}><img src={logout} alt="logout" />Logout</a>
         <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+        
           <FaTimes />
         </button>
       </nav>
