@@ -1,12 +1,17 @@
 // index.js
-import React from 'react';
 import './App.css';
+import './index.css';
+
+import React, { useState, useEffect } from "react";
+import {loadStripe} from '@stripe/stripe-js';
+import {EmbeddedCheckoutProvider, EmbeddedCheckout} from '@stripe/react-stripe-js';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
 import SuperTokens from 'supertokens-web-js';
 import Session from 'supertokens-web-js/recipe/session';
 import Passwordless from 'supertokens-web-js/recipe/passwordless'
+
 import ReactDOM from 'react-dom';
-import './index.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './pages/AuthContext';
 import PhoneNumberInput from './pages/PhoneNumberInput';
 import OTPVerification from './pages/OTPVerification';
