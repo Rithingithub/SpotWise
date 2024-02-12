@@ -20,7 +20,7 @@ parking spots, minimizing search times and alleviating traffic
 buildup. Furthermore, the project's user-centric approach
 extends to the payment process, where duration-based
 calculations ensure fair and transparent fees. With the
-integration of trusted payment gateways like Razorpay, the
+integration of trusted payment gateways like Stripe, the
 system guarantees secure transactions and a frictionless
 payment experience.</p>
 
@@ -36,7 +36,7 @@ payment experience.</p>
 
 ### start docker and setup db
 
-<p> We use postgresql for database and supabase for authentication </p>
+<p> We use postgreSQL for database and supertokens for authentication </p>
 <p> Run this first </p>
 
 ``` 
@@ -49,12 +49,12 @@ docker run -p 3567:3567 -d registry.supertokens.io/supertokens/supertokens-postg
 <p> To start backend </p>
 
 ``` 
-node app.j
+node server.js
  ```
 or
 
 ``` 
-nodemon app.js
+nodemon server.js
  ```
 
 ### Frontend Code 

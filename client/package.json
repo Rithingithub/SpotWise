@@ -14,7 +14,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
-    "react-router-dom": "^6.16.0",
+    "react-live": "^4.1.6",
     "react-scripts": "^5.0.1",
     "react-spring": "^9.7.3",
     "sessions": "^0.0.2-7",
@@ -46,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.22.0"
   }
 }
