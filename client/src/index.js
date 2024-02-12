@@ -33,21 +33,20 @@ SuperTokens.init({
   ],
 });
 
-ReactDOM.render(
-  <React.StrictMode>
-    <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainPage />} />       
-          <Route path="/auth" element={<PhoneNumberInput />} />
-          <Route path="/OTP" element={<OTPVerification />} />
-          <Route path="/PaymentTiles" element={<PaymentTiles />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/support" element={<Support />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+const root=ReactDOM.createRoot(document.getElementById('root'));
+root.render( <React.StrictMode>
+  <AuthProvider>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />       
+        <Route path="/auth" element={<PhoneNumberInput />} />
+        <Route path="/OTP" element={<OTPVerification />} />
+        <Route path="/PaymentTiles" element={<PaymentTiles />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/support" element={<Support />} />
+      </Routes>
+    </Router>
+  </AuthProvider>
+</React.StrictMode>,  
 );
