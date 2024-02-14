@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap");
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Titillium Web", sans-serif;
+}
+
+:root {
+	--mainColor: black;
+	--mainColorLight: #5767aa;
+	--secondaryColor: #db2b39;
+	--textColor: #eee;
+}
+
+
+img{
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 10px;
+	
+  }
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 80px;
+	padding: 0 2rem;
+	background-color: var(--mainColor);
+	color: var(--textColor);
+	/* position: fixed; */
+}
+
+nav a {
+	margin: 0 1rem;
+	color: var(--textColor);
+	text-decoration: none;
+	display: inline-flex; /* Use flexbox to align image and text */
+	align-items: center; /* Vertically center items within the box */
+	padding: 10px;
+	background-color: #1ed760;
+	border-radius: 5px;
+	width: 300px; /* Set a fixed width for all navigation links */
+	text-align: center; /* Center text horizontally within the box */
+	
+  }
+  
+
+nav a:hover {
+	color: var(--secondaryColor);
+}
+
+header .nav-btn {
+	padding: 5px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: var(--textColor);
+	visibility: hidden;
+	opacity: 0;
+	font-size: 1.8rem;
+	
+}
+
+header div,
+nav {
+	display: flex;
+	align-items: center;
+	
+	
+	
+}
+
+@media only screen and (max-width: 1024px) {
+	header .nav-btn {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	header nav {
+		position: fixed;
+		top: -100vh;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		background-color: var(--mainColor);
+		transition: 1s;
+	}
+
+	header .responsive_nav {
+		transform: translateY(100vh);
+	}
+	
+
+	nav .nav-close-btn {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+	}
+
+	nav a {
+		font-size: 1.5rem;
+	}
+
+	/* .Header{
+	position: fixed;
+  	top: 30px;
+ 	left: 50%;
+  	transform: translate(-50%, -50%);
+	} */
+
+	.Header {
+		position: fixed;
+		top: 10px; /* Adjust the top value as needed */
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		align-items: center;
+	  }
+	  
+	  .Header img {
+		margin-right: 10px; /* Adjust the margin as needed */
+	  }
+
+	.back-button{
+		color: white;
+		background-color: transparent;
+		border: none;
+		padding-top: 15px;
+		padding-left: 15px;
+		position: fixed;
+		
+	}
+
+	.icon{
+		font-size: 2.7rem;
+		
+	}
+	.icon:hover {
+		color: var(--secondaryColor);
+	}
+
+
+	
+
+	.paytiles{
+	display: flex;
+  	flex-direction: column;
+  	align-items: center; /* Center items horizontally */
+  	justify-content: center; /* Center items vertically */
+  	height: 100vh;
+	}
+	.paytiles img {
+		margin-bottom: 20px; /* Adjust the value as needed to add space at the bottom of each image */
+	  }
+
+	
+}
