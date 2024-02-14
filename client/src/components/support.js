@@ -6,8 +6,8 @@
   
   import prjLogo from '../images/icon_car.png';
   import sendicon from '../images/Send.png';
-  import '../components/style.css';
-  import '../components/support.css';
+  import css_styles from "../components/style.module.css";
+  import styles from '../components/support.module.css';
 
 const Support = () => {
     const [messages, setMessages] = useState([]);
@@ -79,29 +79,29 @@ const Support = () => {
   
     return (
       <div>
-        <div className='Header'>
+        <div className={css_styles['Header']}>
                 <img src={prjLogo} alt='Logo' width={55} height={35} />
                 <h2>SpotWise</h2>
             </div>
-            <button className='back-button' onClick={goBack}>
-                <IoChevronBackCircleOutline className='icon' />
+            <button className={css_styles['back-button']} onClick={goBack}>
+                <IoChevronBackCircleOutline className={css_styles['icon']} />
             </button>
 
-            <div className='bot-heading'>
-                <h1>ChatBot AI</h1>
+            <div className={styles['bot-heading']}>
+                <h1 className={styles['bot_heading']}>ChatBot AI</h1>
             </div>
   
         <div
           id="chat-container"
-          className='chat-container'
+          className={styles['chat-container']}
           ref={scrollContainerRef}
         >
           {messages.map((message, index) => (
-            <div key={index} className={message.isUser ? 'user-message' : 'bot-message'}>
+            <div key={index} className={message.isUser ? styles['user-message'] : styles['bot-message']}>
               {message.isUser ? (
-                <textarea value={message.text} readOnly className="user-response" />
+                <textarea value={message.text} readOnly className={styles['user-response']} />
               ) : (
-                <div className="bot-response">
+                <div className={styles['bot-response']}>
                   <span>{message.text}</span>
                 </div>
               )}
@@ -109,9 +109,9 @@ const Support = () => {
           ))}
         </div>
   
-        <div className='input-container'>
+        <div className={styles['input-support-container']}>
                 <input
-                    className='text-input'
+                    className={styles['text-input']}
                     type='text'
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
@@ -119,7 +119,7 @@ const Support = () => {
                     placeholder='Type a message...'
                 />
                 
-                <a className='custom-anchor' onClick={sendMessage} ><img className='image-button' src={sendicon} width='54px' height='50px' ></img></a>
+                <a className={styles['custom-anchor']} onClick={sendMessage} ><img className='image-button' src={sendicon} width='54px' height='50px' alt='send-button'></img></a>
             </div>
       </div>
     );

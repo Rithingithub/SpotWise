@@ -1,17 +1,19 @@
 /* support.css */
 
-.input-container {
+.input-support-container {
   display: flex;
   justify-content: flex-end; /* Move items to the right */
   position: fixed;
-  bottom: 5px;
+  bottom: 10px;
   flex-direction: row;
   margin-top: 10px;
   margin-right: 10px; /* Add margin to the right for spacing */
   gap: 30px;
+  left: 15px;
+
 }
 
-.input-container .text-input {
+.input-support-container .text-input {
   
   width: 300px;
   height: 50px;
@@ -22,6 +24,7 @@
   padding-top: 10px;
   position: fixed;
   right: 0;
+  bottom: 3px;
 }
 
 
@@ -34,8 +37,9 @@
   border: 2px solid #ccc;
   border-radius: 10px 10px 10px 0;
   font-size: 16px;
-  color: white;
+  color: black;
   position: relative;
+  background-color: white;
 }
 
 .bot-response::before {
@@ -55,9 +59,10 @@
 
 .bot-message{
   margin-top: auto;
+  
 }
 
-h1{
+.bot_heading{
   color: white;
   position: fixed;
   padding-left: 30%;
@@ -70,6 +75,7 @@ h1{
   max-height: 700px; /* Set the maximum height as needed */
   margin-top: 50px;
   margin-bottom: 40px;
+  
 }
 
 .user-response {

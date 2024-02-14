@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import prjLogo from '../images/icon_car.png';
 import { resendCode, consumeCode } from "supertokens-web-js/recipe/passwordless";
+import appStyles from '../app.module.css';
+import styles from '../components/style.module.css'
 
 const OTPVerification = () => {
   const location = useLocation();
@@ -64,18 +66,18 @@ const OTPVerification = () => {
 
   return (
     <div>
-      <div className='Header'>
+      <div className={styles['Header']}>
         <img src={prjLogo} alt="Logo" width={55} height={35} />
         <h2>SpotWise</h2>
       </div>
       <br />
-      <div className='VContent'>
+      <div className={appStyles['VContent']}>
         <form onSubmit={handleOtpVerification}>
-          <div className='Vtitle'>
+          <div className={appStyles['Vtitle']}>
             <label>Enter 6-digit verification code <br /><br /><br /></label>
             <label>Enter verification code <br /><br /><br /></label>
           </div>
-          <div className='Vinput-container'>
+          <div className={appStyles['Vinput-container']}>
             <input
               type="text"
               id="otp"
@@ -87,7 +89,7 @@ const OTPVerification = () => {
           </div>
           <div>
             <br /><br /><br />
-            <div><p>Didn't receive the code?<span className='green-text' onClick={resendOTP}> Resend </span></p></div>
+            <div><p>Didn't receive the code?<span className={appStyles['green-text']} onClick={resendOTP}> Resend </span></p></div>
             <br /><br />
             <button type="submit">Verify OTP</button>
           </div>

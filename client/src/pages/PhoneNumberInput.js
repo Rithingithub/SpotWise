@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import appStyles from '../app.module.css';
+import styles from '../components/style.module.css'
 import prjLogo from '../images/icon_car.png';
 import { createCode } from "supertokens-web-js/recipe/passwordless";
 
@@ -44,16 +45,16 @@ const PhoneNumber = () => {
 
   return (
     <div>
-      <div className='Header'>
+      <div className={styles['Header']}>
         <img src={prjLogo} alt="Logo" width={55} height={35} />
         <h2>SpotWise</h2>
       </div>
      
-      <div className='Content'>
+      <div className={appStyles.Content}>
         <form onSubmit={handleClick}>
           <h1>Login</h1>
           {/* <label >Phone Number:</label> */}
-          <div className='input-container'>
+          <div className={appStyles['input-container']}>
             {/* <div className='country-code' style={{
               width: '30px',
               height: '100%',

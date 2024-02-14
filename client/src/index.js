@@ -1,5 +1,5 @@
 // index.js
-import './App.css';
+import './app.module.css';
 import './index.css';
 
 import React, { useState, useEffect } from "react";

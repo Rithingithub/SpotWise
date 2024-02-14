@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { FaBars, FaTimes  } from "react-icons/fa";
-import "../components/style.css";
+import css_styles from "../components/style.module.css";
 import prjLogo from '../images/icon_car.png';
 import  paymentLogo from './navimages/ic-outline-payment.png'
 import history from './navimages/ic-round-history.png'
@@ -18,8 +18,9 @@ function Navbar() {
   const navRef = useRef();
 
   const showNavbar = () => {
-    navRef.current.classList.toggle("responsive_nav");
+    navRef.current.classList.toggle(css_styles.responsive_nav);
   };
+  
   async function handleLogout() {
     await Session.signOut();
     window.location.href = "/";
@@ -29,7 +30,7 @@ function Navbar() {
 
   return (
     <header>
-      <div className='Header'>
+      <div className={css_styles['Header']}>
         <img src={prjLogo} alt="Logo" width={55} height={35} />
         <h2>SpotWise</h2>
       </div>
@@ -39,12 +40,17 @@ function Navbar() {
         <a href="/support"><img src={support} alt="Support" />Support</a>
         <a href="/settings"><img src={settingsLogo} alt="settingsLogo" />Settings</a>
         <a href="/#" onClick={handleLogout}><img src={logout} alt="logout" />Logout</a>
-        <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+       
+
+        <button className={`${css_styles["nav-btn"]} ${css_styles["nav-close-btn"]}`} onClick={showNavbar}>
+  
+
+
         
           <FaTimes />
         </button>
       </nav>
-      <button className="nav-btn" onClick={showNavbar}>
+      <button className={css_styles["nav-btn"]} onClick={showNavbar}>
         <FaBars />
       </button>
     </header>

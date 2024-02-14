@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import './box.css';
+import box_style from './box.module.css';
+
+
 import Session from 'supertokens-web-js/recipe/session';
 import { useNavigate } from 'react-router-dom';
 
+
 const BoxComponent = ({ content }) => {
   return (
-    <div className="box">
+    <div className={box_style['box']}>
       {content || "Default content"}
     </div>
   );
@@ -31,10 +34,10 @@ const MainPage = () => {
 
   return (
     <div>
-      <div className='Navbar'>
+      <div className={box_style['Navbar']}>
         <Navbar />
       </div>
-      <div className="box-container">
+      <div className={box_style['box-container']}>
         <BoxComponent content="A1"/>
         <BoxComponent content="A2"/>
         <BoxComponent content="A3"/>

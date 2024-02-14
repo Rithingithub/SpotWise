@@ -30,7 +30,7 @@ header {
 	padding: 0 2rem;
 	background-color: var(--mainColor);
 	color: var(--textColor);
-	position: fixed;
+	/* position: fixed; */
 }
 
 nav a {
@@ -110,12 +110,25 @@ nav {
 		font-size: 1.5rem;
 	}
 
-	.Header{
-		position: absolute;
+	/* .Header{
+	position: fixed;
   	top: 30px;
- 	 left: 50%;
+ 	left: 50%;
   	transform: translate(-50%, -50%);
-	}
+	} */
+
+	.Header {
+		position: fixed;
+		top: 10px; /* Adjust the top value as needed */
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		align-items: center;
+	  }
+	  
+	  .Header img {
+		margin-right: 10px; /* Adjust the margin as needed */
+	  }
 
 	.back-button{
 		color: white;
@@ -123,6 +136,8 @@ nav {
 		border: none;
 		padding-top: 15px;
 		padding-left: 15px;
+		
+		
 	}
 
 	.icon{
@@ -132,6 +147,8 @@ nav {
 	.icon:hover {
 		color: var(--secondaryColor);
 	}
+
+
 	
 
 	.paytiles{
