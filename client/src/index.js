@@ -18,7 +18,7 @@ import PaymentTiles from './components/PaymentTiles'
 import Settings from './components/settings'
 import History from './components/history'
 import Support from './components/support'
-import Timer from './pages/Timer';
+import Timer from './components/Timer';
 
 SuperTokens.init({
   appInfo: {

@@ -12,6 +12,7 @@ import Settings from './settings'; // Rename the import to match the component n
 import History from './history'
 import Support from './support'
 import Session from "supertokens-web-js/recipe/session";
+import Timer from "./Timer"
 
 
 function Navbar() {
@@ -39,6 +40,7 @@ function Navbar() {
         <a href="/history"><img src={history} alt="ParkingHistory" />Parking History</a>
         <a href="/support"><img src={support} alt="Support" />Support</a>
         <a href="/settings"><img src={settingsLogo} alt="settingsLogo" />Settings</a>
+        <a href="/timer"><img src={support} alt="timer" />Timer</a>
         <a href="/#" onClick={handleLogout}><img src={logout} alt="logout" />Logout</a>
        
 
