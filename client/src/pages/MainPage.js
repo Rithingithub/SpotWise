@@ -1,36 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navbar from '../components/Navbar';
+import BoxComponent from './BoxComponent'; 
 import box_style from './box.module.css';
 
-
-import Session from 'supertokens-web-js/recipe/session';
-import { useNavigate } from 'react-router-dom';
-
-
-const BoxComponent = ({ content }) => {
-  return (
-    <div className={box_style['box']}>
-      {content || "Default content"}
-    </div>
-  );
-};
-
 const MainPage = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    async function doesSessionExist() {
-      try {
-        if (await Session.doesSessionExist()) {
-        } else {
-          navigate('/auth', { replace: true });
-        }
-      } catch (error) {
-        console.error('Error checking session:', error);
-      }
-    }
-     doesSessionExist();
-  }, [navigate]);
+  const redirectToTimer = () => {
+    window.location.href = '/timer';
+  };
 
   return (
     <div>
@@ -38,18 +14,18 @@ const MainPage = () => {
         <Navbar />
       </div>
       <div className={box_style['box-container']}>
-        <BoxComponent content="A1"/>
-        <BoxComponent content="A2"/>
-        <BoxComponent content="A3"/>
-        <BoxComponent content="A4"/>
-        <BoxComponent content="A5" />
-        <BoxComponent content="A6" />
-        <BoxComponent content="A7" />
-        <BoxComponent content="A8" />
-        <BoxComponent content="A9" />
-        <BoxComponent content="A10" />
-        <BoxComponent content="A11" />
-        <BoxComponent content="A12" />
+        <BoxComponent content="A1" handleClick={redirectToTimer} />
+        <BoxComponent content="A2" handleClick={redirectToTimer} />
+        <BoxComponent content="A3" handleClick={redirectToTimer} />
+        <BoxComponent content="A4" handleClick={redirectToTimer} />
+        <BoxComponent content="A5" handleClick={redirectToTimer} />
+        <BoxComponent content="A6" handleClick={redirectToTimer} />
+        <BoxComponent content="A7" handleClick={redirectToTimer} />
+        <BoxComponent content="A8" handleClick={redirectToTimer} />
+        <BoxComponent content="A9" handleClick={redirectToTimer} />
+        <BoxComponent content="A10" handleClick={redirectToTimer} />
+        <BoxComponent content="A11" handleClick={redirectToTimer} />
+        <BoxComponent content="A12" handleClick={redirectToTimer} />
       </div>
     </div>
   );
