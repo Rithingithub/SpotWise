@@ -2,10 +2,8 @@
 import './app.module.css';
 import './index.css';
 
-import React, { useState, useEffect } from "react";
-import {loadStripe} from '@stripe/stripe-js';
-import {EmbeddedCheckoutProvider, EmbeddedCheckout} from '@stripe/react-stripe-js';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import SuperTokens from 'supertokens-web-js';
 import Session from 'supertokens-web-js/recipe/session';
@@ -20,6 +18,7 @@ import PaymentTiles from './components/PaymentTiles'
 import Settings from './components/settings'
 import History from './components/history'
 import Support from './components/support'
+import Timer from './pages/Timer';
 
 SuperTokens.init({
   appInfo: {
@@ -45,6 +44,7 @@ root.render( <React.StrictMode>
         <Route path="/settings" element={<Settings />} />
         <Route path="/history" element={<History />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/timer" element={<Timer/>}/>
       </Routes>
     </Router>
   </AuthProvider>
