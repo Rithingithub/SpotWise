@@ -19,6 +19,7 @@ img{
 	padding-top: 0px;
 	padding-left: 0px;
 	padding-right: 10px;
+	
   }
 
 header {
@@ -29,6 +30,7 @@ header {
 	padding: 0 2rem;
 	background-color: var(--mainColor);
 	color: var(--textColor);
+	position: fixed;
 }
 
 nav a {
@@ -42,6 +44,7 @@ nav a {
 	border-radius: 5px;
 	width: 300px; /* Set a fixed width for all navigation links */
 	text-align: center; /* Center text horizontally within the box */
+	
   }
   
 
@@ -59,12 +62,14 @@ header .nav-btn {
 	visibility: hidden;
 	opacity: 0;
 	font-size: 1.8rem;
+	
 }
 
 header div,
 nav {
 	display: flex;
 	align-items: center;
+	
 	
 	
 }

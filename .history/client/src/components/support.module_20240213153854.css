@@ -1,0 +1,102 @@
+/* support.css */
+
+.input-support-container {
+  display: flex;
+  justify-content: flex-end; /* Move items to the right */
+  position: fixed;
+  bottom: 10px;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-right: 10px; /* Add margin to the right for spacing */
+  gap: 30px;
+  left: 15px;
+
+}
+
+.input-support-container .text-input {
+  
+  width: 300px;
+  height: 50px;
+  border-radius: 20px;
+}
+
+.custom-anchor {
+  padding-top: 10px;
+  position: fixed;
+  right: 0;
+}
+
+
+.bot-response {
+  margin-top: 5px; /* Adjust the margin-top value as needed */
+  margin-left: 10px;
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 10px 10px 10px 0;
+  font-size: 16px;
+  color: black;
+  position: relative;
+  background-color: white;
+}
+
+.bot-response::before {
+  content: "";
+  position: absolute;
+  bottom: 0; /* Adjust the bottom value to align the triangle */
+  left: -30px;
+  border-width: 10px 10px 0 0;
+  border-style: solid;
+  border-color: #ccc transparent transparent transparent;
+}
+
+
+.bot-heading{
+  color: green;
+}
+
+.bot-message{
+  margin-top: auto;
+}
+
+.bot_heading{
+  color: white;
+  position: fixed;
+  padding-left: 30%;
+  padding-right: 32%;
+  background-color: green;
+}
+
+.chat-container {
+  overflow-y: auto;
+  max-height: 700px; /* Set the maximum height as needed */
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.user-response {
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 10px 10px 0 10px;
+  font-size: 16px;
+  color: black;
+  background-color: white;
+  position: relative;
+  left: 180px;
+  top:5px;
+  
+}
+
+.user-response::before {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: -30px;
+  border-width: 0 10px 10px 0;
+  border-style: solid;
+  border-color: transparent #ccc transparent transparent;
+}
+
