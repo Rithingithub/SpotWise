@@ -1,4 +1,3 @@
-// index.js
 import './app.module.css';
 import './index.css';
 
@@ -19,6 +18,7 @@ import Settings from './components/settings'
 import History from './components/history'
 import Support from './components/support'
 import Timer from './components/Timer';
+import { Return, CheckoutForm } from './pages/CheckoutForm';
 
 SuperTokens.init({
   appInfo: {
@@ -32,21 +32,25 @@ SuperTokens.init({
   ],
 });
 
-const root=ReactDOM.createRoot(document.getElementById('root'));
-root.render( <React.StrictMode>
-  <AuthProvider>
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />       
-        <Route path="/auth" element={<PhoneNumberInput />} />
-        <Route path="/OTP" element={<OTPVerification />} />
-        <Route path="/PaymentTiles" element={<PaymentTiles />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/timer" element={<Timer/>}/>
-      </Routes>
-    </Router>
-  </AuthProvider>
-</React.StrictMode>,  
+ReactDOM.render(
+  <React.StrictMode>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainPage />} />       
+          <Route path="/auth" element={<PhoneNumberInput />} />
+          <Route path="/OTP" element={<OTPVerification />} />
+          <Route path="/PaymentTiles" element={<PaymentTiles />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/timer" element={<Timer/>}/>
+          <Route path="/checkout" element={<CheckoutForm />} />
+          <Route path="/return" element={<Return />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  </React.StrictMode>,  
+  document.getElementById('root')
 );
+

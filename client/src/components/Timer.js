@@ -26,7 +26,7 @@ const Timer = () => {
   const handlePay = () => {
 
   //Checkout page
-    window.location.href = '/Checkout';
+    window.location.href = '/checkout';
   };
 
   //Time format

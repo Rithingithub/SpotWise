@@ -9,7 +9,7 @@ const { connectToDatabase } = require('./database/database');
 const { verifySession } = require ("supertokens-node/recipe/session/framework/express");
 const { SessionRequest } = require("supertokens-node/framework/express");
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
-const YOUR_DOMAIN = 'http://localhost:8000';
+const YOUR_DOMAIN = 'http://localhost:3000';
 
 require('dotenv').config();
 connectToDatabase();
@@ -58,21 +58,30 @@ app.post("/like-comment", verifySession(), (req, res) => {
 app.use('/api/v1', routers);
 
 //Stripe API
-app.use(express.static('public'));
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
+    ui_mode: 'embedded',
     line_items: [
       {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
         price: 'price_1Of342SFm20wFv9NOJ1Lp2Sb',
         quantity: 1,
       },
     ],
     mode: 'payment',
-    success_url: `${YOUR_DOMAIN}?success=true`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+    return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
   });
 
-  res.redirect(303, session.url);
+  res.send({clientSecret: session.client_secret});
+});
+
+app.get('/session-status', async (req, res) => {
+  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+
+  res.send({
+    status: session.status,
+    customer_email: session.customer_details.email
+  });
 });
 
 // Error handling middleware
