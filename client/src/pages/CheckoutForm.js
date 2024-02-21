@@ -1,83 +1,89 @@
 import React, { useState, useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import {
-  EmbeddedCheckoutProvider,
-  EmbeddedCheckout,
-} from "@stripe/react-stripe-js";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { loadStripe } from '@stripe/stripe-js';
+import {EmbeddedCheckoutProvider,EmbeddedCheckout} from '@stripe/react-stripe-js';
+import {BrowserRouter as Router,Route,Routes,Navigate} from "react-router-dom";
 
-import styles from "./checkout.module.css";
+import styles from './checkout.module.css'
 
-const stripePromise = loadStripe(
-  "pk_test_51OegKGSFm20wFv9NGIxtndF4fvJI75ZjEveAKMYRiZbRvIBTzymSfTHjpUxQzgZoho5QWpVf5fUNYj3BFqLf9R8u0043ztedi4"
-);
-
+// Component for the checkout form
 const CheckoutForm = () => {
-  const [clientSecret, setClientSecret] = useState("");
+  const [clientSecret, setClientSecret] = useState('');
+  const [stripePromise, setStripePromise] = useState(null);
 
   useEffect(() => {
-    fetch("/create-checkout-session", {
-      method: "POST",
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+    const fetchStripePublishableKey = async () => {
+      const response = await fetch('/config');
+      const { key } = await response.json();
+      const stripePromise = loadStripe(key);
+      setStripePromise(stripePromise);
+    };
+
+    fetchStripePublishableKey();
+  }, []);
+
+  useEffect(() => {
+    const fetchClientSecret = async () => {
+      const response = await fetch("/create-checkout-session", {
+        method: "POST",
+      });
+      const data = await response.json();
+      setClientSecret(data.clientSecret);
+    };
+
+    fetchClientSecret();
   }, []);
 
   return (
-    <div className={`${styles.checkout} checkout-page`}>
-      {clientSecret && (
+    <div className={styles.checkout}>
+      {clientSecret && stripePromise && (
         <EmbeddedCheckoutProvider
           stripe={stripePromise}
-          options={{ clientSecret }}
+          options={{clientSecret}}
         >
           <EmbeddedCheckout />
         </EmbeddedCheckoutProvider>
       )}
     </div>
   );
-};
+}
 
+// Component to handle the return after payment completion
 const Return = () => {
   const [status, setStatus] = useState(null);
-  const [customerEmail, setCustomerEmail] = useState("");
+  const [customerEmail, setCustomerEmail] = useState('');
 
   useEffect(() => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const sessionId = urlParams.get("session_id");
+    const fetchSessionStatus = async () => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const sessionId = urlParams.get('session_id');
 
-    fetch(`/session-status?session_id=${sessionId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setStatus(data.status);
-        setCustomerEmail(data.customer_email);
-      });
+      const response = await fetch(`/session-status?session_id=${sessionId}`);
+      const data = await response.json();
+      
+      setStatus(data.status);
+      setCustomerEmail(data.customer_email);
+    };
+
+    fetchSessionStatus();
   }, []);
 
-  if (status === "open") {
+  if (status === 'open') {
     return <Navigate to="/checkout" />;
   }
 
-  if (status === "complete") {
+  if (status === 'complete') {
     return (
       <section className={styles.success}>
         <p>
-          We appreciate your business! A confirmation email will be sent to{" "}
-          {customerEmail}.
-          <br />
-          If you have any questions, please email{" "}
-          <a href="mailto:SpotWise@gmail.com">SpotWise@gmail.com</a>.
+          We appreciate your business! A confirmation email will be sent to {customerEmail}.
+          If you have any questions, please email <a href="mailto:Spotwise@gmail.com">SpotWise@gmail.com</a>.
         </p>
       </section>
     );
   }
 
   return null;
-};
+}
 
-export { Return, CheckoutForm };
+export { CheckoutForm, Return };

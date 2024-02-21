@@ -8,7 +8,7 @@ const routers = require('./router/router');
 const { connectToDatabase } = require('./database/database');
 const { verifySession } = require ("supertokens-node/recipe/session/framework/express");
 const { SessionRequest } = require("supertokens-node/framework/express");
-const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const YOUR_DOMAIN = 'http://localhost:3000';
 
 require('dotenv').config();
@@ -58,6 +58,10 @@ app.post("/like-comment", verifySession(), (req, res) => {
 app.use('/api/v1', routers);
 
 //Stripe API
+app.get('/config', (req, res) => {
+  res.json({ key: process.env.STRIPE_PUBLISHABLE_KEY });
+});
+
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     ui_mode: 'embedded',
