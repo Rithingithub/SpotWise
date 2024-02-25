@@ -6,7 +6,7 @@ import prjLogo from '../images/icon_car.png';
 const history = () => {
     const goBack = () => {
         // Use a regular anchor tag to navigate to the main page
-        window.location.href = '/';
+        window.location.href = '/MainPage';
       };
       return (
         <div>

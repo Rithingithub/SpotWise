@@ -80,7 +80,7 @@ const Timer = () => {
   };
 
   const goBack = () => {
-    window.location.href = '/';
+    window.location.href = '/SlotPage';
   };
 
   return (

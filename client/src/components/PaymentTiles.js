@@ -9,7 +9,7 @@ import apay from './paymentimages/apay.png'
 
 const PaymentTiles = () => {
   const goBack = () => {
-    window.location.href = '/';
+    window.location.href = '/MainPage';
   };
 
   return (
