@@ -38,7 +38,8 @@ ReactDOM.render(
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<MainPage />} /> 
+          <Route path="/" element={<PhoneNumberInput />} /> 
+          <Route path="/MainPage" element={<MainPage />} /> 
           <Route path="/SlotPage" element={<SlotPage />} />       
           <Route path="/auth" element={<PhoneNumberInput />} />
           <Route path="/OTP" element={<OTPVerification />} />
