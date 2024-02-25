@@ -13,6 +13,7 @@ import { AuthProvider } from './pages/AuthContext';
 import PhoneNumberInput from './pages/PhoneNumberInput';
 import OTPVerification from './pages/OTPVerification';
 import MainPage from './pages/MainPage';
+import SlotPage from './pages/SlotPage';
 import PaymentTiles from './components/PaymentTiles'
 import Settings from './components/settings'
 import History from './components/history'
@@ -37,7 +38,8 @@ ReactDOM.render(
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<MainPage />} />       
+          <Route path="/" element={<MainPage />} /> 
+          <Route path="/SlotPage" element={<SlotPage />} />       
           <Route path="/auth" element={<PhoneNumberInput />} />
           <Route path="/OTP" element={<OTPVerification />} />
           <Route path="/PaymentTiles" element={<PaymentTiles />} />
