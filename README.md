@@ -40,8 +40,8 @@ payment experience.</p>
 <p> Run this first </p>
 
 ``` 
-docker run -p 3567:3567 -d registry.supertokens.io/supertokens/supertokens-postgresql:7.0 
-```
+ 
+```docker run -p 3567:3567 -d registry.supertokens.io/supertokens/supertokens-postgresql:7.0
 
 ### Backend Code
 
