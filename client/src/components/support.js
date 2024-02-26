@@ -74,7 +74,7 @@ const Support = () => {
     };
   
     const goBack = () => {
-      window.location.href = '/';
+      window.location.href = '/MainPage';
     };
   
     return (

@@ -157,8 +157,12 @@ nav {
 		justify-content: center;
 		margin-top: 120px; /* Add margin to create space between header and payment tiles */
 	  }
+
+	
+}
+
 	  
 	  .paytiles img {
 		margin: 10px; /* Adjust margin as needed */
 	  }
-	}
+	

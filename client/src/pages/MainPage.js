@@ -1,56 +1,55 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
+import main_styles from './main.module.css';
 import box_style from './box.module.css';
-
-
-import Session from 'supertokens-web-js/recipe/session';
-import { useNavigate } from 'react-router-dom';
-
-
-const BoxComponent = ({ content }) => {
-  return (
-    <div className={box_style['box']}>
-      {content || "Default content"}
-    </div>
-  );
-};
+import prjLogo from '../images/icon_car.png';
+import styles from '../components/style.module.css';
 
 const MainPage = () => {
-  const navigate = useNavigate();
+  const [selectedCenter, setSelectedCenter] = useState('');
 
-  useEffect(() => {
-    async function doesSessionExist() {
-      try {
-        if (await Session.doesSessionExist()) {
-        } else {
-          navigate('/auth', { replace: true });
-        }
-      } catch (error) {
-        console.error('Error checking session:', error);
-      }
+  const handleSelectChange = (e) => {
+    setSelectedCenter(e.target.value);
+  };
+
+  const redirectToSlot = () => {
+    if (selectedCenter) {
+      window.location.href = `/SlotPage?center=${selectedCenter}`;
     }
-     doesSessionExist();
-  }, [navigate]);
+  };
 
   return (
     <div>
-      <div className={box_style['Navbar']}>
+      <div className={styles['Header']}>
+        <img src={prjLogo} alt="Logo" width={55} height={35} />
+        <h2>SpotWise</h2>
+      </div>
+      <div className={styles['Navbar']}>
         <Navbar />
       </div>
-      <div className={box_style['box-container']}>
-        <BoxComponent content="A1"/>
-        <BoxComponent content="A2"/>
-        <BoxComponent content="A3"/>
-        <BoxComponent content="A4"/>
-        <BoxComponent content="A5" />
-        <BoxComponent content="A6" />
-        <BoxComponent content="A7" />
-        <BoxComponent content="A8" />
-        <BoxComponent content="A9" />
-        <BoxComponent content="A10" />
-        <BoxComponent content="A11" />
-        <BoxComponent content="A12" />
+      <div className={main_styles['parking_center']}>
+        <h1>Select Parking Centre:</h1>
       </div>
+      <div>
+        <select
+          id="parking-centers"
+          name="parking-centers"
+          value={selectedCenter}
+          onChange={handleSelectChange}
+        >
+          <option value="">Select a center</option>
+          <option value="M Dit">Mdit</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </div>
+      <div>
+  <button onClick={redirectToSlot} disabled={!selectedCenter} className={main_styles['custom-button']}>
+    Submit
+  </button>
+</div>
+
     </div>
   );
 };
