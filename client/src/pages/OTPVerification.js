@@ -27,14 +27,14 @@ const OTPVerification = () => {
         } else {
           // user sign in success
         }
-        window.location.assign("/MainPage"); // Corrected route to "Mainpage"
+        window.location.assign("/refresh-session"); 
       } else if (response.status === "INCORRECT_USER_INPUT_CODE_ERROR") {
         window.alert("Wrong OTP! Please try again. Number of attempts left: " + (response.maximumCodeInputAttempts - response.failedCodeInputAttemptCount));
       } else if (response.status === "EXPIRED_USER_INPUT_CODE_ERROR") {
         window.alert("Old OTP entered. Please regenerate a new one and try again");
       } else {
         window.alert("Login failed. Please try again");
-        window.location.assign("/auth");
+        window.location.assign("/");
       }
     } catch (err) {
       if (err.isSuperTokensGeneralError === true) {
@@ -51,7 +51,7 @@ const OTPVerification = () => {
 
       if (response.status === "RESTART_FLOW_ERROR") {
         window.alert("Login failed. Please try again");
-        window.location.assign("/auth");
+        window.location.assign("/");
       } else {
         window.alert("Please check your phone for the OTP");
       }

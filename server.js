@@ -10,6 +10,7 @@ const { verifySession } = require ("supertokens-node/recipe/session/framework/ex
 const { SessionRequest } = require("supertokens-node/framework/express");
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const YOUR_DOMAIN = 'http://localhost:3000';
+const Dashboard = require ("supertokens-node/recipe/dashboard");
 
 require('dotenv').config();
 connectToDatabase();
@@ -19,6 +20,7 @@ supertokens.init({
   framework: "express",
   supertokens: {
     connectionURI: "http://localhost:3567",
+    apiKey:process.env.DOCKER_API_KEY,
   },
   appInfo: {
     appName: "SpotWise",
@@ -28,6 +30,9 @@ supertokens.init({
     websiteBasePath: "/auth",
   },
   recipeList: [
+    Dashboard.init({
+      admins: [],
+    }),
     Passwordless.init({
       flowType: "USER_INPUT_CODE",
       contactMethod: "PHONE",
@@ -50,10 +55,15 @@ app.use(
 
 // SuperTokens Middleware
 app.use(middleware());
-app.post("/like-comment", verifySession(), (req, res) => {
+
+app.post("/userdata", verifySession(), async (req, res) => {
   let userId = req.session.getUserId();
-  
-});
+  // mutate some user data
+  res.send({
+      userId
+  })
+})
+
 // Define your API routes here
 app.use('/api/v1', routers);
 
