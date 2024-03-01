@@ -22,9 +22,9 @@ function Navbar() {
     navRef.current.classList.toggle(css_styles.responsive_nav);
   };
   
-  async function handleLogout() {
-    await Session.signOut();
-    window.location.href = "/";
+  async function handleLogout () {
+    await Session.signOut(); 
+    window.location.href = "/auth";
   }
 
 
@@ -39,7 +39,7 @@ function Navbar() {
         <a href="/history"><img src={history} alt="ParkingHistory" />Parking History</a>
         <a href="/support"><img src={support} alt="Support" />Support</a>
         <a href="/settings"><img src={settingsLogo} alt="settingsLogo" />Settings</a>
-        <a href="/" onClick={handleLogout}><img src={logout} alt="logout" />Logout</a>
+        <a href="/#" onClick={handleLogout}><img src={logout} alt="logout" />Logout</a>
        
 
         <button className={`${css_styles["nav-btn"]} ${css_styles["nav-close-btn"]}`} onClick={showNavbar}>

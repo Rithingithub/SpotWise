@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Session from 'supertokens-web-js/recipe/session';
+import prjLogo from '../images/icon_car.png';
 import main_styles from './main.module.css';
 import box_style from './box.module.css';
-import prjLogo from '../images/icon_car.png';
 import styles from '../components/style.module.css';
 
 const MainPage = () => {
+  // State variables
   const [selectedCenter, setSelectedCenter] = useState('');
 
+  // Event handlers
   const handleSelectChange = (e) => {
     setSelectedCenter(e.target.value);
   };
@@ -17,7 +20,8 @@ const MainPage = () => {
       window.location.href = `/SlotPage?center=${selectedCenter}`;
     }
   };
-
+  
+  // JSX structure
   return (
     <div>
       <div className={styles['Header']}>
@@ -45,11 +49,10 @@ const MainPage = () => {
         </select>
       </div>
       <div>
-  <button onClick={redirectToSlot} disabled={!selectedCenter} className={main_styles['custom-button']}>
-    Submit
-  </button>
-</div>
-
+        <button onClick={redirectToSlot} disabled={!selectedCenter} className={main_styles['custom-button']}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 };

@@ -7,19 +7,18 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import SuperTokens from 'supertokens-web-js';
 import Session from 'supertokens-web-js/recipe/session';
-import Passwordless from 'supertokens-web-js/recipe/passwordless'
-
+import Passwordless from 'supertokens-web-js/recipe/passwordless';
 
 import { AuthProvider } from './pages/AuthContext';
 import PhoneNumberInput from './pages/PhoneNumberInput';
 import OTPVerification from './pages/OTPVerification';
 import MainPage from './pages/MainPage';
 import SlotPage from './pages/SlotPage';
-import RefreshPage from './pages/RefreshPage';
-import PaymentTiles from './components/PaymentTiles'
-import Settings from './components/settings'
-import History from './components/history'
-import Support from './components/support'
+import RefreshSession from "./pages/RefreshSession";
+import PaymentTiles from './components/PaymentTiles';
+import Settings from './components/settings';
+import History from './components/history';
+import Support from './components/support';
 import Timer from './pages/Timer';
 import { Return, CheckoutForm } from './pages/CheckoutForm';
 
@@ -37,14 +36,28 @@ SuperTokens.init({
 
 const App = () => {
   useEffect(() => {
-    async function checkSession() {
+    async function doesSessionExist() {
       if (await Session.doesSessionExist()) {
-        // window.location.href = "/MainPage";
+          
       } else {
-        // window.location.href = "/";
+        window.location.href="/auth";
+
       }
-    }
-    checkSession();
+  }
+    doesSessionExist();
+
+    // fetch('/change-user-data', 
+    // {method: 'POST'}) 
+    //   .then(response => response.json())
+    //   .then(data => {
+    //       if (!data.userId) {
+    //           window.location.href = "/refresh";
+    //       }
+    //   })
+    //   .catch(error => {
+    //       console.error('Error fetching user data:', error);
+    //       // Handle error if needed
+    //   });
   }, []);
 
   return (
@@ -52,9 +65,9 @@ const App = () => {
       <AuthProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<PhoneNumberInput />} />
-            <Route path="/MainPage" element={<MainPage />} />
-            <Route path="/refresh-page" element={<RefreshPage />} />
+            <Route path="/auth" element={<PhoneNumberInput />} />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/refresh" element={<RefreshSession />} />
             <Route path="/SlotPage" element={<SlotPage />} />
             <Route path="/OTP" element={<OTPVerification />} />
             <Route path="/PaymentTiles" element={<PaymentTiles />} />
