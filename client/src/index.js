@@ -1,9 +1,9 @@
 import './app.module.css';
 import './index.css';
 
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,  } from 'react-router-dom';
 
 import SuperTokens from 'supertokens-web-js';
 import Session from 'supertokens-web-js/recipe/session';
@@ -34,33 +34,8 @@ SuperTokens.init({
   ],
 });
 
-const App = () => {
-  useEffect(() => {
-    async function doesSessionExist() {
-      if (await Session.doesSessionExist()) {
-          
-      } else {
-        window.location.href="/auth";
 
-      }
-  }
-    doesSessionExist();
-
-    // fetch('/change-user-data', 
-    // {method: 'POST'}) 
-    //   .then(response => response.json())
-    //   .then(data => {
-    //       if (!data.userId) {
-    //           window.location.href = "/refresh";
-    //       }
-    //   })
-    //   .catch(error => {
-    //       console.error('Error fetching user data:', error);
-    //       // Handle error if needed
-    //   });
-  }, []);
-
-  return (
+ReactDOM.render(
     <React.StrictMode>
       <AuthProvider>
         <Router>
@@ -80,11 +55,7 @@ const App = () => {
           </Routes>
         </Router>
       </AuthProvider>
-    </React.StrictMode>
-  );
-}
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+    </React.StrictMode>,
+document.getElementById("root")
 );
+  

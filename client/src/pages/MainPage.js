@@ -3,10 +3,27 @@ import Navbar from '../components/Navbar';
 import Session from 'supertokens-web-js/recipe/session';
 import prjLogo from '../images/icon_car.png';
 import main_styles from './main.module.css';
-import box_style from './box.module.css';
 import styles from '../components/style.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      async function doesSessionExist() {
+        try {
+          if (await Session.doesSessionExist()) {
+          } else {
+            navigate('/auth', { replace: true });
+          }
+        } catch (error) {
+          console.error('Error checking session:', error);
+        }
+      }
+       doesSessionExist();
+    }, [navigate]);
+
+
   // State variables
   const [selectedCenter, setSelectedCenter] = useState('');
 

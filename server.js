@@ -20,7 +20,6 @@ supertokens.init({
   framework: "express",
   supertokens: {
     connectionURI: "http://localhost:3567",
-    apiKey:process.env.DOCKER_API_KEY,
   },
   appInfo: {
     appName: "SpotWise",
@@ -56,7 +55,7 @@ app.use(
 // SuperTokens Middleware
 app.use(middleware());
 
-app.post("/userdata", verifySession(), async (req, res) => {
+app.post("/change-user-data", verifySession(), async (req, res) => {
   let userId = req.session.getUserId();
   // mutate some user data
   res.send({
