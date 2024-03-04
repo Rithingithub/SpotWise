@@ -13,15 +13,24 @@ const MainPage = () => {
       async function doesSessionExist() {
         try {
           if (await Session.doesSessionExist()) {
+            let userId = await Session.getUserId();
+            if (!userId) {
+              navigate('/refresh');
+            } else {
+              navigate('/');
+            }
           } else {
-            navigate('/auth', { replace: true });
+            navigate('/auth');
           }
         } catch (error) {
           console.error('Error checking session:', error);
         }
       }
-       doesSessionExist();
+      doesSessionExist();
     }, [navigate]);
+    ;
+    
+
 
 
   // State variables

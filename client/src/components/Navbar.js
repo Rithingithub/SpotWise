@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { FaBars, FaTimes  } from "react-icons/fa";
 import css_styles from "../components/style.module.css";
 import prjLogo from '../images/icon_car.png';
@@ -7,16 +7,15 @@ import history from './navimages/ic-round-history.png'
 import support from  './navimages/simple-line-icons_support.png'
 import settingsLogo from  './navimages/feather-settings.png' // Rename the import to avoid conflicts
 import logout from   './navimages/ls-logout.png'
-import PaymentTiles from './PaymentTiles'; // Import the PaymentTiles component
-import Settings from './settings'; // Rename the import to match the component name
-import History from './history'
-import Support from './support'
+
 import Session from "supertokens-web-js/recipe/session";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Navbar() {
   const navRef = useRef();
+  const navigate = useNavigate();
 
   const showNavbar = () => {
     navRef.current.classList.toggle(css_styles.responsive_nav);
@@ -24,8 +23,8 @@ function Navbar() {
   
   async function handleLogout () {
     await Session.signOut(); 
-    window.location.href = "/auth";
-  }
+    navigate ("/auth");
+  };
 
 
   return (

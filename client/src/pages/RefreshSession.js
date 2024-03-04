@@ -1,25 +1,21 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Session from 'supertokens-web-js/recipe/session';
 
 function RefreshSession() {
+    const navigate = useNavigate();
     useEffect(() => {
         async function attemptRefresh() {
             Session.attemptRefreshingSession().then(success => {
                 if (success) {
-                    // we have new session tokens, so we redirect the user back
-                    // to where they were.
-                    const urlParams = new URLSearchParams(window.location.search);
-                    window.location.href = urlParams.get('redirectBack');
+                    navigate('/');
                 } else {
-                    // we redirect to the login page since the user
-                    // is now logged out
-                    window.location.href = "/auth"
+                    navigate("/auth");
                 }
             });
         }
         attemptRefresh();
-    }, []);
-
+    }, [navigate]);
 }
 
 export default RefreshSession;
