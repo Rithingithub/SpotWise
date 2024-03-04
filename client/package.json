@@ -15,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-live": "^4.1.6",
+    "react-razorpay": "^2.0.1",
     "react-scripts": "^5.0.1",
     "react-spring": "^9.7.3",
     "sessions": "^0.0.2-7",

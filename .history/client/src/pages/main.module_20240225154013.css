@@ -1,0 +1,74 @@
+.parking_center{
+    color: aqua;
+    font-size: 1rem;
+    margin-top: 5rem;
+    margin-left: 2rem;
+}
+
+
+
+
+select{
+    width: 250px;
+   background-color: aquamarine; 
+   margin-left: 20%;
+   margin-top: 5rem;
+   /* padding-left: 4rem;
+   padding-right: 4rem; */
+   
+   padding-top: 0.5rem;
+   padding-bottom: 0.5rem;
+   outline:none;
+}
+
+select option{
+    margin-left: 1rem;
+    background-color: rgb(26, 78, 43);
+}
+
+select:focus {
+    border-color: #4CAF50; /* Change the color to indicate focus */
+    box-shadow: 0 0 1rem rgba(81, 203, 238, 1); /* Add a subtle shadow on focus */
+}
+
+
+.custom-button {
+    /* Define button size and padding */
+    padding: 10px 20px;
+    font-size: 16px;
+    width: 250px;
+    margin-top: 1rem;
+    margin-left: 20%;
+  
+    /* Define colors */
+    background-color: black; /* Blue background color */
+    color: green; /* White text color */
+    border: 1rem;
+    border: 0.4rem double green;
+    border-radius: 5px; /* Rounded corners */
+  
+    /* Hover effect */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .custom-button:hover {
+    background-color: #4b7f2f; /* Darker blue on hover */
+    color: #fff; /* White text on hover */
+  }
+  
+  .custom-button:disabled {
+    /* Define button size and padding */
+    padding: 10px 20px;
+    font-size: 20px;
+  
+    /* Define colors */
+    background-color: black; /* Blue background color */
+    color: green; /* White text color */
+    border: 1rem;
+    border: 0.4rem double green;
+    border-radius: 5px; /* Rounded corners */
+
+  
+    /* Hover effect */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }

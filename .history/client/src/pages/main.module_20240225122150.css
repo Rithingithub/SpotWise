@@ -1,0 +1,30 @@
+.parking_center{
+    color: aqua;
+    font-size: 1rem;
+    margin-top: 5rem;
+    margin-left: 2rem;
+}
+
+
+
+
+select{
+   background-color: aquamarine; 
+   margin-left: 20%;
+   margin-top: 5rem;
+   padding-left: 4rem;
+   padding-right: 4rem;
+   padding-top: 0.5rem;
+   padding-bottom: 0.5rem;
+   outline:none;
+}
+
+select option{
+    margin-left: 1rem;
+    background-color: rgb(26, 78, 43);
+}
+
+select:focus {
+    border-color: #4CAF50; /* Change the color to indicate focus */
+    box-shadow: 0 0 1rem rgba(81, 203, 238, 1); /* Add a subtle shadow on focus */
+}

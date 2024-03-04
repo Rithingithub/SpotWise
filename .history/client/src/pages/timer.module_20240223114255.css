@@ -1,0 +1,97 @@
+.container-timer {
+  width: 10rem;
+  height: 10rem;
+  margin-right: 30%;
+  margin-left: 30%;
+  margin-top: 35%;
+  margin-bottom: 0;
+  border: 1rem solid white; /* Use 'solid' and specify color for the outer border */
+  border-radius: 50%;
+  background-color: #000; /* Set the background color for the inner circle */
+  color: white; /* Set the text color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Your Stylish Font', sans-serif;
+}
+
+
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 90%;
+}
+
+.clock-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.clock-info div {
+  font-family: sans-serif; /* Specify your stylish font */
+}
+
+.button-stop-or-start {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #000;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 350px;
+  position: fixed;
+}
+
+.start {
+  background-color: green;
+  bottom: 5rem;
+}
+
+.stop {
+  background-color: red;
+}
+
+.payButton {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #000;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 350px;
+  background-color: green;
+  position: fixed;
+  bottom: 15px;
+}
+
+.timer_heading {
+  color: white;
+  position: fixed;
+  padding-left: 25%;
+  padding-right: 10%;
+}
+
+.timer-heading {
+  color: green;
+}
+
+
+.details-container{
+  color: red;
+  background-color: white;
+  margin-left: 2rem;
+  margin-top: 20%;
+  margin-right: 2rem;
+  border-radius: 1rem;
+  padding-right: 10px;
+  
+}
