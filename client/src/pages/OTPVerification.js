@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import prjLogo from '../images/icon_car.png';
-import { resendCode, consumeCode } from "supertokens-web-js/recipe/passwordless";
+import { resendCode, consumeCode, clearLoginAttemptInfo } from "supertokens-web-js/recipe/passwordless";
 import appStyles from '../app.module.css';
 import styles from '../components/style.module.css'
 
@@ -20,49 +20,52 @@ const OTPVerification = () => {
       let response = await consumeCode({
         userInputCode: otp
       });
-
       if (response.status === "OK") {
-        if (response.createdNewUser) {
-          // user sign up success
+        
+        await clearLoginAttemptInfo();
+        if (response.createdNewRecipeUser && response.user.loginMethods.length === 1) {
+            
         } else {
-          // user sign in success
+            
         }
-        window.location.assign("/refresh-session"); 
+        window.location.assign("/")
       } else if (response.status === "INCORRECT_USER_INPUT_CODE_ERROR") {
         window.alert("Wrong OTP! Please try again. Number of attempts left: " + (response.maximumCodeInputAttempts - response.failedCodeInputAttemptCount));
       } else if (response.status === "EXPIRED_USER_INPUT_CODE_ERROR") {
         window.alert("Old OTP entered. Please regenerate a new one and try again");
       } else {
-        window.alert("Login failed. Please try again");
-        window.location.assign("/");
+        await clearLoginAttemptInfo();
+            window.alert("Login failed. Please try again");
+            window.location.assign("/auth")
       }
-    } catch (err) {
-      if (err.isSuperTokensGeneralError === true) {
-        window.alert(err.message);
-      } else {
-        window.alert("Oops! Something went wrong.");
-      }
+     } catch (err) {
+        if (err.isSuperTokensGeneralError === true) {
+            window.alert(err.message);
+        } else {
+            window.alert("Oops! Something went wrong.");
+        }
     }
-  };
-
-  async function resendOTP() {
-    try {
+}
+async function resendOTP() {
+  try {
       let response = await resendCode();
 
       if (response.status === "RESTART_FLOW_ERROR") {
-        window.alert("Login failed. Please try again");
-        window.location.assign("/");
+          await clearLoginAttemptInfo();
+          window.alert("Login failed. Please try again");
+          window.location.assign("/auth")
       } else {
-        window.alert("Please check your phone for the OTP");
+        
+          window.alert("Please check your Phone for the OTP");
       }
-    } catch (err) {
+  } catch (err) {
       if (err.isSuperTokensGeneralError === true) {
-        window.alert(err.message);
+          window.alert(err.message);
       } else {
-        window.alert("Oops! Something went wrong.");
+          window.alert("Oops! Something went wrong.");
       }
-    }
   }
+}
 
   return (
     <div>

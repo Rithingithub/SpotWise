@@ -5,7 +5,7 @@ import styles from '../components/style.module.css'
 import prjLogo from '../images/icon_car.png';
 import { createCode } from "supertokens-web-js/recipe/passwordless";
 
-const PhoneNumber = () => {
+const PhoneNumberInput = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const navigate = useNavigate();
 
@@ -80,4 +80,4 @@ const PhoneNumber = () => {
   );
 }
 
-export default PhoneNumber;
+export default PhoneNumberInput;

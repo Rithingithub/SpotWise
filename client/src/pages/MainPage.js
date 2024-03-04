@@ -1,13 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import main_styles from './main.module.css';
-import box_style from './box.module.css';
+import Session from 'supertokens-web-js/recipe/session';
 import prjLogo from '../images/icon_car.png';
+import main_styles from './main.module.css';
 import styles from '../components/style.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      async function doesSessionExist() {
+        try {
+          if (await Session.doesSessionExist()) {
+            let userId = await Session.getUserId();
+            if (!userId) {
+              navigate('/refresh');
+            } else {
+              navigate('/');
+            }
+          } else {
+            navigate('/auth');
+          }
+        } catch (error) {
+          console.error('Error checking session:', error);
+        }
+      }
+      doesSessionExist();
+    }, [navigate]);
+    ;
+    
+
+
+
+  // State variables
   const [selectedCenter, setSelectedCenter] = useState('');
 
+  // Event handlers
   const handleSelectChange = (e) => {
     setSelectedCenter(e.target.value);
   };
@@ -17,7 +46,8 @@ const MainPage = () => {
       window.location.href = `/SlotPage?center=${selectedCenter}`;
     }
   };
-
+  
+  // JSX structure
   return (
     <div>
       <div className={styles['Header']}>
@@ -45,11 +75,10 @@ const MainPage = () => {
         </select>
       </div>
       <div>
-  <button onClick={redirectToSlot} disabled={!selectedCenter} className={main_styles['custom-button']}>
-    Submit
-  </button>
-</div>
-
+        <button onClick={redirectToSlot} disabled={!selectedCenter} className={main_styles['custom-button']}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 };
