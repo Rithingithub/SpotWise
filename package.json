@@ -25,6 +25,7 @@
     "react-spring": "^9.7.3",
     "session": "^0.1.0",
     "sessions": "^0.0.2-7",
+    "socket.io": "^4.7.4",
     "stripe": "^14.17.0",
     "supertokens-auth-react": "^0.34.2",
     "supertokens-node": "^15.2.1",

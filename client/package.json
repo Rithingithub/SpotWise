@@ -20,6 +20,7 @@
     "react-scripts": "^5.0.1",
     "react-spring": "^9.7.3",
     "sessions": "^0.0.2-7",
+    "socket.io-client": "^4.7.4",
     "supertokens-auth-react": "^0.34.2",
     "supertokens-web-js": "^0.7.3",
     "verify": "^0.1.2",

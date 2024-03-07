@@ -10,7 +10,13 @@ const { verifySession } = require ("supertokens-node/recipe/session/framework/ex
 const { SessionRequest } = require("supertokens-node/framework/express");
 const Razorpay = require("razorpay");
 const YOUR_DOMAIN = 'http://localhost:3000';
-const Dashboard = require ("supertokens-node/recipe/dashboard");
+const Dashboard = require("supertokens-node/recipe/dashboard");
+const http = require('http');
+const { Server } = require('socket.io');
+
+const app = express();
+
+const server = http.createServer(app);
 
 require('dotenv').config();
 connectToDatabase();
@@ -40,9 +46,6 @@ supertokens.init({
   ],
 });
 
-// Create an Express app instance
-const app = express();
-
 // Enable CORS
 app.use(
   cors({
@@ -61,7 +64,7 @@ app.post("/change-user-data", verifySession(), async (req, res) => {
   res.send({
       userId
   })
-})
+});
 
 // Define your API routes here
 app.use('/api/v1', routers);
@@ -125,6 +128,21 @@ app.use((err, req, res, next) => {
 
 // Start your Express server
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+});
+
+const io = new Server(server);
+io.on('connection', (socket) => {
+  console.log(`User connected: ${socket.id}`);
+
+  socket.on('slotChange', ({ slot, color }) => {
+    console.log(`Received slotChange event for slot ${slot} with color ${color}`);
+    // Broadcast the slotChange event to all clients except the sender
+    socket.broadcast.emit('slotChange', { slot, color });
+  });
+
+  socket.on('disconnect', () => {
+    console.log(`User disconnected: ${socket.id}`);
+  });
 });
