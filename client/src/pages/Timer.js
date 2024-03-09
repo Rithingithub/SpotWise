@@ -43,10 +43,84 @@ const Timer = () => {
     return roundedHours * 30;
   };
 
-  const handlePay = () => {
+  const amount = 500;
+  const currency = "INR";
+  const receiptId = "qwsaql";
 
-    //   //Checkout page
-        window.location.href = '/Checkout';
+  const handlePay = async (e) => {
+
+   
+    try {
+      const response = await fetch("http://localhost:8000/order", {
+        method: "POST",
+        body: JSON.stringify({
+          amount,
+          currency,
+          receipt: receiptId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const order = await response.json();
+      console.log(order);
+
+      // Razorpay SDK script inclusion
+      const razorpayScript = document.createElement("script");
+      razorpayScript.src = "https://checkout.razorpay.com/v1/checkout.js";
+      document.body.appendChild(razorpayScript);
+
+      razorpayScript.onload = () => {
+        // Initialize Razorpay only when the script is loaded
+        initializeRazorpay(order);
+      };
+
+      e.preventDefault();
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle the error, e.g., display an error message to the user
+    }
+  };
+
+  const initializeRazorpay = (order) => {
+    var options = {
+      key: "rzp_test_ugQ7FvkaVje1q9", // Enter the Key ID generated from the Dashboard
+      amount,
+      currency,
+      "name": "Spotwise", //your business name
+      "description": "A Smart Parking System",
+      "image": {prjLogo},
+      "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response){
+          alert(response.razorpay_payment_id);
+          alert(response.razorpay_order_id);
+          alert(response.razorpay_signature)
+      },
+      "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+          "name": "Gaurav Kumar", //your customer's name
+          "email": "gaurav.kumar@example.com", 
+          "contact": "9000090000"  //Provide the customer's phone number for better conversion rates 
+      },
+      "notes": {
+          "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+          "color": "#3399cc"
+      }
+    };
+    var rzp1 = new window.Razorpay(options);
+    rzp1.on('payment.failed', function (response) {
+      alert(response.error.code);
+      alert(response.error.description);
+      alert(response.error.source);
+      alert(response.error.step);
+      alert(response.error.reason);
+      alert(response.error.metadata.order_id);
+      alert(response.error.metadata.payment_id);
+
+    });
+    rzp1.open();
       };
 
   useEffect(() => {
