@@ -1,9 +1,11 @@
+const express = require("express");
+const cors = require("cors");
+const http = require('http');
+const { Server } = require('socket.io');
 const supertokens = require("supertokens-node");
 const Session = require("supertokens-node/recipe/session");
 const Passwordless = require("supertokens-node/recipe/passwordless");
 const { middleware, errorHandler } = require("supertokens-node/framework/express");
-const express = require("express");
-const cors = require("cors");
 const routers = require('./router/router');
 const { connectToDatabase } = require('./database/database');
 const { verifySession } = require ("supertokens-node/recipe/session/framework/express");
@@ -11,12 +13,6 @@ const { SessionRequest } = require("supertokens-node/framework/express");
 const Razorpay = require("razorpay");
 const YOUR_DOMAIN = 'http://localhost:3000';
 const Dashboard = require("supertokens-node/recipe/dashboard");
-const http = require('http');
-const { Server } = require('socket.io');
-
-const app = express();
-
-const server = http.createServer(app);
 
 require('dotenv').config();
 connectToDatabase();
@@ -46,21 +42,39 @@ supertokens.init({
   ],
 });
 
+// Create an Express app instance
+const app = express();
+const server = http.createServer(app);
+
 // Enable CORS
-app.use(
-  cors({
+const io = new Server(server, {
+  cors: {
     origin: "http://localhost:3000",
     allowedHeaders: ["content-type", ...supertokens.getAllCORSHeaders()],
     credentials: true,
-  })
-);
+  },
+});
+
+// Socket Connection
+io.on('connection', (socket) => {
+  console.log(`User connected: ${socket.id}`);
+  
+  socket.on('slotChange', ({ slot, color }) => {
+    console.log(`Received slotChange event for slot ${slot} with color ${color}`);
+    
+    // Broadcast the slotChange event to all clients including the sender
+    io.emit('slotChange', { slot, color });
+  });
+
+  socket.on('disconnect', () => {
+    console.log(`User disconnected: ${socket.id}`);
+  });
+});
 
 // SuperTokens Middleware
 app.use(middleware());
-
 app.post("/change-user-data", verifySession(), async (req, res) => {
   let userId = req.session.getUserId();
-  // mutate some user data
   res.send({
       userId
   })
@@ -132,17 +146,5 @@ server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-const io = new Server(server);
-io.on('connection', (socket) => {
-  console.log(`User connected: ${socket.id}`);
 
-  socket.on('slotChange', ({ slot, color }) => {
-    console.log(`Received slotChange event for slot ${slot} with color ${color}`);
-    // Broadcast the slotChange event to all clients except the sender
-    socket.broadcast.emit('slotChange', { slot, color });
-  });
 
-  socket.on('disconnect', () => {
-    console.log(`User disconnected: ${socket.id}`);
-  });
-});

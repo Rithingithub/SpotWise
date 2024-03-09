@@ -3,8 +3,9 @@ import styles from './Popup.module.css';
 
 const Popup = ({ onSelectSlot, onClose }) => {
   const handleSelectSlot = () => {
-    onSelectSlot(); // Call the function passed from SlotPage.js
-    onClose(); // Close the popup
+    onSelectSlot(); 
+    onClose(); 
+    window.location.href = '/timer'; 
   };
 
   return (
