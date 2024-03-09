@@ -8,7 +8,7 @@ const routers = require('./router/router');
 const { connectToDatabase } = require('./database/database');
 const { verifySession } = require ("supertokens-node/recipe/session/framework/express");
 const { SessionRequest } = require("supertokens-node/framework/express");
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const Razorpay = require("razorpay");
 const YOUR_DOMAIN = 'http://localhost:3000';
 const Dashboard = require ("supertokens-node/recipe/dashboard");
 
@@ -66,35 +66,53 @@ app.post("/change-user-data", verifySession(), async (req, res) => {
 // Define your API routes here
 app.use('/api/v1', routers);
 
-//Stripe API
-app.get('/config', (req, res) => {
-  res.json({ key: process.env.STRIPE_PUBLISHABLE_KEY });
-});
 
-app.post('/create-checkout-session', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    ui_mode: 'embedded',
-    line_items: [
-      {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: 'price_1Of342SFm20wFv9NOJ1Lp2Sb',
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
-  });
+//CORS
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-  res.send({clientSecret: session.client_secret});
-});
+const corsOptions = {
+  origin: 'http://localhost:3000', // Replace with your frontend URL
+  credentials: true, // Enable credentials (cookies, authorization headers, etc.)
+};
 
-app.get('/session-status', async (req, res) => {
-  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+app.use(cors(corsOptions));
 
-  res.send({
-    status: session.status,
-    customer_email: session.customer_details.email
-  });
+//RAZORPAY 
+
+app.post("/order", async (req, res) => {
+  try {
+    if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_SECRET) {
+      console.error("Razorpay API key ID or secret is missing.");
+      return res.status(500).send("Error");
+    }
+
+    console.log("Initializing Razorpay with key_id:", process.env.RAZORPAY_KEY_ID);
+    console.log("Initializing Razorpay with key_secret:", process.env.RAZORPAY_SECRET);
+
+    const razorpay = new Razorpay({
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_SECRET,
+    });
+
+    console.log("Razorpay initialized successfully");
+
+    const options = req.body;
+    console.log("Creating Razorpay order with options:", options);
+
+    const order = await razorpay.orders.create(options);
+
+    if (!order) {
+      console.error("Error creating Razorpay order");
+      return res.status(500).send("Error");
+    }
+
+    console.log("Razorpay order created successfully:", order);
+    res.json(order);
+  } catch (err) {
+    console.error("Error in Razorpay integration:", err);
+    res.status(500).send("Error");
+  }
 });
 
 // Error handling middleware

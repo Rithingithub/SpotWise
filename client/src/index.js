@@ -20,7 +20,7 @@ import Settings from './components/settings';
 import History from './components/history';
 import Support from './components/support';
 import Timer from './pages/Timer';
-import { Return, CheckoutForm } from './pages/CheckoutForm';
+
 
 SuperTokens.init({
   appInfo: {
@@ -50,8 +50,8 @@ ReactDOM.render(
             <Route path="/history" element={<History />} />
             <Route path="/support" element={<Support />} />
             <Route path="/timer" element={<Timer />} />
-            <Route path="/checkout" element={<CheckoutForm />} />
-            <Route path="/return" element={<Return />} />
+          
+        
           </Routes>
         </Router>
       </AuthProvider>
