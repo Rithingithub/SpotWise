@@ -51,6 +51,15 @@ const SlotPage = () => {
     setSelectedCenter(center);
     setShowPopup(true);
     socket.emit('slotChange', { slot: content, color: 'red' });
+
+    // Set a timer to revert the color back to its original state after an hour
+    setTimeout(() => {
+      setSlotColors(prevState => ({
+        ...prevState,
+        [content]: 'Green'
+      }));
+    }, 3600000); // 1 hour in milliseconds
+
   };
 
   const handleClosePopup = () => {
