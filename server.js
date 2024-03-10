@@ -1,16 +1,18 @@
+const express = require("express");
+const cors = require("cors");
+const http = require('http');
+const { Server } = require('socket.io');
 const supertokens = require("supertokens-node");
 const Session = require("supertokens-node/recipe/session");
 const Passwordless = require("supertokens-node/recipe/passwordless");
 const { middleware, errorHandler } = require("supertokens-node/framework/express");
-const express = require("express");
-const cors = require("cors");
 const routers = require('./router/router');
 const { connectToDatabase } = require('./database/database');
 const { verifySession } = require ("supertokens-node/recipe/session/framework/express");
 const { SessionRequest } = require("supertokens-node/framework/express");
 const Razorpay = require("razorpay");
 const YOUR_DOMAIN = 'http://localhost:3000';
-const Dashboard = require ("supertokens-node/recipe/dashboard");
+const Dashboard = require("supertokens-node/recipe/dashboard");
 
 require('dotenv').config();
 connectToDatabase();
@@ -42,44 +44,56 @@ supertokens.init({
 
 // Create an Express app instance
 const app = express();
+const server = http.createServer(app);
 
-// Enable CORS
-app.use(
-  cors({
+// CORS
+const corsOptions = {
     origin: "http://localhost:3000",
     allowedHeaders: ["content-type", ...supertokens.getAllCORSHeaders()],
     credentials: true,
-  })
-);
+};
 
-// SuperTokens Middleware
+// CORS (Socket)
+const io = new Server(server, {
+  cors: corsOptions,
+});
+
+// CORS (Supertokens, Razorpay)
+app.use(cors(corsOptions));
+
+// Socket Connection
+io.on('connection', (socket) => {
+  console.log(`User connected: ${socket.id}`);
+  
+  socket.on('slotChange', ({ slot, color }) => {
+    console.log(`Received slotChange event for slot ${slot} with color ${color}`);
+    
+    // Broadcast the slotChange event to all clients including the sender
+    io.emit('slotChange', { slot, color });
+  });
+
+  socket.on('disconnect', () => {
+    console.log(`User disconnected: ${socket.id}`);
+  });
+});
+
+// Middleware (Supertokens)
 app.use(middleware());
-
 app.post("/change-user-data", verifySession(), async (req, res) => {
   let userId = req.session.getUserId();
-  // mutate some user data
   res.send({
       userId
   })
-})
+});
 
 // Define your API routes here
 app.use('/api/v1', routers);
 
-
-//CORS
+// Middleware (JSON, URL)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with your frontend URL
-  credentials: true, // Enable credentials (cookies, authorization headers, etc.)
-};
-
-app.use(cors(corsOptions));
-
-//RAZORPAY 
-
+// Razorpay
 app.post("/order", async (req, res) => {
   try {
     if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_SECRET) {
@@ -115,7 +129,7 @@ app.post("/order", async (req, res) => {
   }
 });
 
-// Error handling middleware
+// Middleware (errorHandler)
 app.use(errorHandler());
 
 // Custom error handler
@@ -125,6 +139,9 @@ app.use((err, req, res, next) => {
 
 // Start your Express server
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
+

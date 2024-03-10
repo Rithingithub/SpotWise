@@ -1,39 +1,74 @@
-
-
-import React, { useState, useEffect } from 'react';
+// In SlotPage.js
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import BoxComponent from './BoxComponent';
 import Popup from './Popup';
 import box_style from './box.module.css';
 import styles from '../components/style.module.css';
+import io from 'socket.io-client';
+const socket = io.connect('http://localhost:8000');
 
 const SlotPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectedCenter, setSelectedCenter] = useState('');
+  const [slotColors, setSlotColors] = useState({});
 
   useEffect(() => {
-    // Get the selected center from URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const center = urlParams.get('center');
     setSelectedCenter(center);
+
+    console.log("Socket connected:", socket.connected);
+    return () => {
+      console.log("Socket disconnected");
+      // Clean up the socket connection
+      socket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    // Listen for slotChange events from the server
+    socket.on('slotChange', ({ slot, color }) => {
+      // Update the slot color in the state
+      setSlotColors(prevState => ({
+        ...prevState,
+        [slot]: color
+      }));
+    });
+
+    // Clean up event listener on unmount
+    return () => {
+      socket.off('slotChange');
+    };
   }, []);
 
   const handleSelectSlot = (content) => {
-    // Set the selected slot and show the popup
+    const urlParams = new URLSearchParams(window.location.search);
+    const center = urlParams.get('center');
+
     setSelectedSlot(content);
+    setSelectedCenter(center);
     setShowPopup(true);
+    socket.emit('slotChange', { slot: content, color: 'red' });
+
+    // Set a timer to revert the color back to its original state after an hour
+    setTimeout(() => {
+      setSlotColors(prevState => ({
+        ...prevState,
+        [content]: 'Green'
+      }));
+    }, 3600000); // 1 hour in milliseconds
+
   };
 
   const handleClosePopup = () => {
-    // Close the popup and reset the selected slot
     setSelectedSlot(null);
     setShowPopup(false);
   };
 
-  const redirectToTimer = () => {
-    // Redirect to the timer page with the selected slot information
-    window.location.href = `/timer?center=${selectedCenter}&content=${selectedSlot}`;
+  const redirectToCheckout = () => {
+    window.location.href = `/checkout?center=${selectedCenter}&content=${selectedSlot}`;
   };
 
   return (
@@ -42,24 +77,17 @@ const SlotPage = () => {
         <Navbar />
       </div>
       <div className={box_style['box-container']}>
-        {/* <h2>Selected Center: {selectedCenter}</h2> */}
-        <BoxComponent content="A1" handleClick={() => handleSelectSlot("A1")} />
-        <BoxComponent content="A2" handleClick={() => handleSelectSlot("A2")} />
-        <BoxComponent content="A3" handleClick={() => handleSelectSlot("A3")} />
-        <BoxComponent content="A4" handleClick={() => handleSelectSlot("A4")}  />
-        <BoxComponent content="A5" handleClick={() => handleSelectSlot("A5")}  />
-        <BoxComponent content="A6" handleClick={() => handleSelectSlot("A6")}  />
-        <BoxComponent content="A7" handleClick={() => handleSelectSlot("A7")}  />
-        <BoxComponent content="A8" handleClick={() => handleSelectSlot("A8")}  />
-        <BoxComponent content="A9" handleClick={() => handleSelectSlot("A9")}  />
-        <BoxComponent content="A10" handleClick={() => handleSelectSlot("A10")}  />
-        <BoxComponent content="A11" handleClick={() => handleSelectSlot("A11")} />
-        <BoxComponent content="A12" handleClick={() => handleSelectSlot("A12")} />
-        {/* ... (other BoxComponent instances) */}
+        {['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'A11', 'A12'].map(slot => (
+          <BoxComponent
+            key={slot}
+            content={slot}
+            color={slotColors[slot] || 'Green'}
+            handleClick={() => handleSelectSlot(slot)}
+          />
+        ))}
       </div>
-
       {showPopup && (
-        <Popup onClose={handleClosePopup} onSelectSlot={redirectToTimer} />
+        <Popup onClose={handleClosePopup} onSelectSlot={redirectToCheckout} />
       )}
     </div>
   );

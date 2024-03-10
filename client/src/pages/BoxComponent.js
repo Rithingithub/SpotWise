@@ -1,10 +1,15 @@
+// In BoxComponent.js
 import React from 'react';
 import box_style from './box.module.css';
 
-const BoxComponent = ({ content, handleClick }) => {
+const BoxComponent = ({ content, color, handleClick }) => {
   return (
-    <div className={box_style['box']} onClick={handleClick}>
-      {content || "Default content"}
+    <div
+      className={box_style['box']}
+      style={{ backgroundColor: color }}
+      onClick={handleClick}
+    >
+      {content}
     </div>
   );
 };
