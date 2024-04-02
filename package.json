@@ -23,6 +23,7 @@
     "razorpay": "^2.9.2",
     "react-router-dom": "^6.16.0",
     "react-spring": "^9.7.3",
+    "sequelize": "^6.37.2",
     "session": "^0.1.0",
     "sessions": "^0.0.2-7",
     "socket.io": "^4.7.4",
