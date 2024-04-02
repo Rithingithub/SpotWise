@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import styles from './timer.module.css';
 import prjLogo from '../images/icon_car.png';
