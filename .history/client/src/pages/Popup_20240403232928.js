@@ -14,7 +14,7 @@ const Popup = ({ onSelectSlot, onClose }) => {
   }
 
 
-  const amount = 10000;
+  const amount = 5000;
 const currency = "INR";
 const receiptId = "qwsaql";
 
