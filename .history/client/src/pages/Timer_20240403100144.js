@@ -41,7 +41,7 @@ const Timer = () => {
     return roundedHours * 30;
   };
 
-  const amount = 5000;
+  const amount = 500;
   const currency = "INR";
   const receiptId = "qwsaql";
 
@@ -93,9 +93,7 @@ const Timer = () => {
       "handler": function (response){
           alert(response.razorpay_payment_id);
           alert(response.razorpay_order_id);
-          alert(response.razorpay_signature);
-                 
-
+          alert(response.razorpay_signature)
       },
       "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
           "name": "Gaurav Kumar", //your customer's name

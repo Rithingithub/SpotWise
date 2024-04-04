@@ -14,7 +14,7 @@ const Popup = ({ onSelectSlot, onClose }) => {
   }
 
 
-  const amount = 10000;
+  const amount = 500;
 const currency = "INR";
 const receiptId = "qwsaql";
 
@@ -114,3 +114,78 @@ const receiptId = "qwsaql";
 export default Popup;
 
 
+
+// import React from 'react';
+// import styles from './Popup.module.css';
+// import prjLogo from '../images/icon_car.png';
+
+// const amount = 500;
+// const currency = "INR";
+// const receiptId = "qwsaql";
+
+// const Popup = ({ onSelectSlot, onClose }) => {
+//   const handleSelectSlot = async (e) => {
+//     onSelectSlot(); 
+//     onClose(); 
+//     try {
+//       const response = await fetch("http://localhost:8000/order", {
+//         method: "POST",
+//         body: JSON.stringify({
+//           amount,
+//           currency,
+//           receipt: receiptId,
+//         }),
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       });
+
+//       const order = await response.json();
+//       console.log(order);
+
+//       // Redirect to Razorpay payment page
+//       const options = {
+//         key: "NA7EysQ5wOAzXsVhRtqyD4wB",
+//         amount: order.amount, // order amount
+//         currency: order.currency, // currency
+//         order_id: order.id, // order ID
+//         name: "Spotwise",
+//         description: "A Smart Parking System",
+//         image: prjLogo,
+//         handler: function (response) {
+//           // Handle successful payment
+//           alert("Payment successful!");
+//         },
+//         prefill: {
+//           name: "Gaurav Kumar",
+//           email: "gaurav.kumar@example.com",
+//           contact: "9000090000",
+//         },
+//         theme: {
+//           color: "#3399cc",
+//         },
+//       };
+//       const rzp1 = new window.Razorpay(options);
+//       rzp1.open();
+
+//       e.preventDefault();
+//     } catch (error) {
+//       console.error("Error:", error);
+//       // Handle the error, e.g., display an error message to the user
+//     }
+//   };
+
+//   return (
+//     <div className={styles.popup}>
+//       <button onClick={handleSelectSlot}>Select Slot</button>
+//       <button onClick={handleSelectSlot}>Reserve Slot</button>
+//       <button onClick={onClose}>Cancel</button>
+//     </div>
+//   );
+// };
+
+// export default Popup;
+
+
+
+  

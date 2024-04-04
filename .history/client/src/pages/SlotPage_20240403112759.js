@@ -1,9 +1,5 @@
-
-
-
 // In SlotPage.js
 import React, { useEffect, useState } from 'react';
-
 import Navbar from '../components/Navbar';
 import BoxComponent from './BoxComponent';
 import Popup from './Popup';
@@ -51,13 +47,13 @@ const SlotPage = () => {
   const currency = "INR";
   const receiptId = "qwsaql";
 
-  const handleSelectSlot = async (content) => {
+  const handleSelectSlot = (content) = async (e) => {
     const urlParams = new URLSearchParams(window.location.search);
     const center = urlParams.get('center');
 
     setSelectedSlot(content);
     setSelectedCenter(center);
-    setShowPopup(true);
+    // setShowPopup(true);
     socket.emit('slotChange', { slot: content, color: 'red' });
 
     // Set a timer to revert the color back to its original state after an hour
@@ -67,7 +63,40 @@ const SlotPage = () => {
         [content]: 'Green'
       }));
     }, 3600000); // 1 hour in milliseconds
-  }; // <-- Missing closing brace for handleSelectSlot
+
+
+    try {
+      const response = await fetch("http://localhost:8000/order", {
+        method: "POST",
+        body: JSON.stringify({
+          amount,
+          currency,
+          receipt: receiptId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const order = await response.json();
+      console.log(order);
+
+      // Razorpay SDK script inclusion
+      const razorpayScript = document.createElement("script");
+      razorpayScript.src = "https://checkout.razorpay.com/v1/checkout.js";
+      document.body.appendChild(razorpayScript);
+
+      razorpayScript.onload = () => {
+        // Initialize Razorpay only when the script is loaded
+        initializeRazorpay(order);
+      };
+
+      e.preventDefault();
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle the error, e.g., display an error message to the user
+    }
+  };
 
   const handleClosePopup = () => {
     setSelectedSlot(null);
@@ -75,7 +104,7 @@ const SlotPage = () => {
   };
 
   const redirectToCheckout = () => {
-    window.location.href = `/timer?center=${selectedCenter}&content=${selectedSlot}`;
+    window.location.href = `/checkout?center=${selectedCenter}&content=${selectedSlot}`;
   };
 
   return (

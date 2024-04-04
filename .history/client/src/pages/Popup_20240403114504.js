@@ -3,25 +3,16 @@ import styles from './Popup.module.css';
 import prjLogo from '../images/icon_car.png';
 
 
-
+const amount = 500;
+  const currency = "INR";
+  const receiptId = "qwsaql";
 
 const Popup = ({ onSelectSlot, onClose }) => {
   const handleSelectSlot = async (e) => {
     onSelectSlot(); 
     onClose(); 
-    window.location.href = '/timer'; 
+    // window.location.href = '/timer'; 
     // window.location.href = '/checkout';
-  }
-
-
-  const amount = 10000;
-const currency = "INR";
-const receiptId = "qwsaql";
-
-
-  const handlePay = async (e) => {
-
-   
     try {
       const response = await fetch("http://localhost:8000/order", {
         method: "POST",
@@ -54,6 +45,11 @@ const receiptId = "qwsaql";
       // Handle the error, e.g., display an error message to the user
     }
   };
+
+
+  
+
+ 
 
   const initializeRazorpay = (order) => {
     var options = {
@@ -95,22 +91,13 @@ const receiptId = "qwsaql";
     rzp1.open();
       };
 
-
-
-
-  
- 
-
-  
   return (
     <div className={styles.popup}>
       <button onClick={handleSelectSlot}>Select Slot</button>
-      <button onClick={handlePay}>Reserve Slot</button>
+      <button onClick={handleSelectSlot}>Reserve Slot</button>
       <button onClick={onClose}>Cancel</button>
     </div>
   );
 };
 
 export default Popup;
-
-

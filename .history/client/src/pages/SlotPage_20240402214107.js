@@ -1,9 +1,5 @@
-
-
-
 // In SlotPage.js
 import React, { useEffect, useState } from 'react';
-
 import Navbar from '../components/Navbar';
 import BoxComponent from './BoxComponent';
 import Popup from './Popup';
@@ -47,11 +43,7 @@ const SlotPage = () => {
     };
   }, []);
 
-  const amount = 500;
-  const currency = "INR";
-  const receiptId = "qwsaql";
-
-  const handleSelectSlot = async (content) => {
+  const handleSelectSlot = (content) => {
     const urlParams = new URLSearchParams(window.location.search);
     const center = urlParams.get('center');
 
@@ -67,7 +59,8 @@ const SlotPage = () => {
         [content]: 'Green'
       }));
     }, 3600000); // 1 hour in milliseconds
-  }; // <-- Missing closing brace for handleSelectSlot
+
+  };
 
   const handleClosePopup = () => {
     setSelectedSlot(null);
@@ -75,7 +68,7 @@ const SlotPage = () => {
   };
 
   const redirectToCheckout = () => {
-    window.location.href = `/timer?center=${selectedCenter}&content=${selectedSlot}`;
+    window.location.href = `/checkout?center=${selectedCenter}&content=${selectedSlot}`;
   };
 
   return (
