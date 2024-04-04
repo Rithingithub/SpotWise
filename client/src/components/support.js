@@ -38,15 +38,27 @@ const Support = () => {
     const processUserMessage = (text) => {
       let response;
       switch (text.toLowerCase()) {
-        case 'hello':
-          response = 'Hi there! How can I assist you today?';
-          break;
-        case 'how are you?':
-          response = 'I\'m just a chatbot, but thanks for asking!';
-          break;
-        case 'goodbye':
-          response = 'Goodbye! Have a great day!';
-          break;
+         case 'hello':
+      response = 'Hi there! How can I assist you today?';
+      break;
+    case 'how are you?':
+      response = 'I\'m just a chatbot, but thanks for asking!';
+      break;
+    case 'goodbye':
+      response = 'Goodbye! Have a great day!';
+      break;
+    case 'help':
+      response = 'Sure, I can help you. What do you need assistance with?';
+      break;
+    case 'what is your name?':
+      response = 'I\'m a chatbot. You can call me SpotWise Bot.';
+      break;
+      case 'parking rates':
+      response = 'Our parking rates vary depending on the location and duration of parking. Please visit our website for detailed information on parking rates.';
+      break;
+      case 'how to reserve a parking spot?':
+      response = 'To reserve a parking spot, simply visit our website, choose the desired location and complete the reservation process.';
+      break;
         default:
           response = 'Sorry, I didn\'t understand that.';
           break;
