@@ -6,10 +6,14 @@ import gpay from './paymentimages/gpay.png'
 import paypal from './paymentimages/paypal.png'
 import visa from './paymentimages/visa.png'
 import apay from './paymentimages/apay.png'
+import paytm from './paymentimages/paytm.png'
+import phonepe from './paymentimages/phonepe.png'
+import amazonpay from './paymentimages/amazonpay.png'
+import netbank from './paymentimages/netbank.png'
 
 const PaymentTiles = () => {
   const goBack = () => {
-    window.location.href = '/MainPage';
+    window.location.href = '/';
   };
 
   return (
@@ -26,6 +30,10 @@ const PaymentTiles = () => {
         <img src={paypal} alt="paypal" width={175} height={120} />
         <img src={visa} alt="visa" width={175} height={120} />
         <img src={apay} alt="applepay" width={175} height={120} />
+        <img src={paytm} alt="paytm" width={175} height={120} />
+        <img src={phonepe} alt="phonepe" width={175} height={120} />
+        <img src={amazonpay} alt="amazonpay" width={175} height={120} />
+        <img src={netbank} alt="netbank" width={175} height={120} />
       </div>
     </div>
   );
