@@ -23,7 +23,7 @@ function Navbar() {
   
   async function handleLogout () {
     await Session.signOut(); 
-    navigate ("/auth");
+    navigate ("/#");
   };
 
 
