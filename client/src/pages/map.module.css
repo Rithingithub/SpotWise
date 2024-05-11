@@ -1,0 +1,39 @@
+/* style.module.css */
+
+/* Define styles for the map container */
+.mapContainer {
+    width: 400px;
+    height: 500px;
+    padding-top: 0px; /* Add 50px padding top */
+    /* Add any additional styles you want for the map container */
+
+    
+}
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 800; /* Ensure popup appears above markers */
+    width: 250px;
+    font-weight: bold;
+    
+}   
+
+img{
+    padding-left: 15px;
+}
+
+button{
+    background-color: rgb(35, 235, 35);
+    color: white;
+    border-radius: 1px;
+    padding: 10px;
+    font-size: large;
+    /* margin-left: 20%; */
+    
+}
