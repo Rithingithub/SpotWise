@@ -20,6 +20,7 @@ import Settings from './components/settings';
 import History from './components/history';
 import Support from './components/support';
 import Timer from './pages/Timer';
+import MapPage from './pages/MapPage';
 
 
 SuperTokens.init({
@@ -41,7 +42,7 @@ ReactDOM.render(
         <Router>
           <Routes>
             <Route path="/auth" element={<PhoneNumberInput />} />
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" element={<MapPage />} />
             <Route path="/refresh" element={<RefreshSession />} />
             <Route path="/SlotPage" element={<SlotPage />} />
             <Route path="/OTP" element={<OTPVerification />} />
