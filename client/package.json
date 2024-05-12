@@ -6,6 +6,7 @@
     "@react-google-maps/api": "^2.19.2",
     "@stripe/react-stripe-js": "^2.5.0",
     "@stripe/stripe-js": "^2.4.0",
+    "@supabase/supabase-js": "^2.43.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

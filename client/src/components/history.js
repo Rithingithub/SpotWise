@@ -1,8 +1,14 @@
+//In history.js
 import React, { useState, useEffect } from 'react';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import prjLogo from '../images/icon_car.png';
 import css__styles from "../components/style.module.css";
 import css_styles from "./history.module.css";
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = 'https://hxapmewlaqrojlkcvpef.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4YXBtZXdsYXFyb2psa2N2cGVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU0MTc3MjAsImV4cCI6MjAzMDk5MzcyMH0.tSlkmFjsH8tgVX0PIkL8Cd_iyjr6LzJMdltjrUYyWss';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const History = () => {
     const [historyData, setHistoryData] = useState([]);
@@ -13,17 +19,17 @@ const History = () => {
     }, []);
 
     const fetchHistory = async () => {
-        try {
-            const response = await fetch('http://localhost:8000/api/v1/history');
-            if (!response.ok) {
-                throw new Error('Failed to fetch data');
-            }
-            const data = await response.json();
-            setHistoryData(data);
-            setLoading(false);
-        } catch (error) {
+        setLoading(true);
+        let { data: Histories, error } = await supabase
+            .from('Histories')
+            .select('*');
+        
+        if (error) {
             console.error('Error fetching data:', error.message);
+        } else {
+            setHistoryData(Histories);
         }
+        setLoading(false);
     };
 
     const goBack = () => {

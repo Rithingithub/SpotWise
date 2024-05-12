@@ -10,7 +10,6 @@ const Popup = ({ onSelectSlot, onClose }) => {
     onSelectSlot(); 
     onClose(); 
     window.location.href = '/timer'; 
-    // window.location.href = '/checkout';
   }
 
 
