@@ -56,7 +56,7 @@ const SlotPage = () => {
     const { data, error } = await supabase
       .from('Histories')
       .insert([
-        { location: 'someValue' , payAmount: 75 },
+        { location: "Mdit slot" , payAmount: 50 },
       ])
       .select()
             
