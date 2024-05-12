@@ -75,6 +75,26 @@ nav {
 	
 }
 
+.Settings {
+	color: white;
+	padding-left:35%;
+	padding-top: 20%;
+}
+
+.Settings_components{
+	color: green;
+	padding-top: 10%;
+	padding-right: 10%;
+	padding-left: 10%;
+}
+
+.Settings_hr{
+	padding-top: 5%;
+	padding-bottom: 5%;
+	font-size: large;
+	padding-left: 0;
+}
+
 @media only screen and (max-width: 1024px) {
 	header .nav-btn {
 		visibility: visible;
@@ -149,7 +169,15 @@ nav {
 		color: var(--secondaryColor);
 	}
 
-
+	/* .iconfor{
+		
+		font-size: 2.7rem;
+		color: black;
+		outline: white;
+		background: none;
+		padding-top: 0;
+		padding-left: 50%;
+	} */
 	
 
 	.paytiles {
