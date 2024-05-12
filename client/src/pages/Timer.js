@@ -4,7 +4,6 @@ import prjLogo from '../images/icon_car.png';
 import css_styles from '../components/style.module.css';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 
-
 const currentDate = new Date();
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1; // Months are zero-based, so we add 1
@@ -19,19 +18,16 @@ const Timer = () => {
   const [content, setContent] = useState('');
 
   const [stopTime, setStopTime] = useState(null);
-  const [initialStartTime, setInitialStartTime] = useState(null);
+  const [initialStartTime, setInitialStartTime] = useState(new Date()); // Set initial start time when the component mounts
 
   const handleStartStop = () => {
     if (isActive) {
       setIsActive(false);
-      if (!initialStartTime) {
-        setInitialStartTime(new Date()); // Capture initial starting time
-      }
-      alert(`Calculating . . . . . . `);
-    } else {
-      setIsActive(true);
       setStopTime(new Date()); // Capture stopping time when the counter stops
       setStoppedAmount(calculateAmount());
+    } else {
+      setIsActive(true);
+      setInitialStartTime(new Date()); // Reset initial starting time when timer restarts
     }
   };
 
@@ -46,8 +42,6 @@ const Timer = () => {
   const receiptId = "qwsaql";
 
   const handlePay = async (e) => {
-
-   
     try {
       const response = await fetch("http://localhost:8000/order", {
         method: "POST",
@@ -64,43 +58,39 @@ const Timer = () => {
       const order = await response.json();
       console.log(order);
 
-      // Razorpay SDK script inclusion
       const razorpayScript = document.createElement("script");
       razorpayScript.src = "https://checkout.razorpay.com/v1/checkout.js";
       document.body.appendChild(razorpayScript);
 
       razorpayScript.onload = () => {
-        // Initialize Razorpay only when the script is loaded
         initializeRazorpay(order);
       };
 
       e.preventDefault();
     } catch (error) {
       console.error("Error:", error);
-      // Handle the error, e.g., display an error message to the user
     }
   };
 
   const initializeRazorpay = (order) => {
     var options = {
-      key: "rzp_test_ugQ7FvkaVje1q9", // Enter the Key ID generated from the Dashboard
+      key: "rzp_test_ugQ7FvkaVje1q9",
       amount,
       currency,
-      "name": "Spotwise", //your business name
+      "name": "Spotwise",
       "description": "A Smart Parking System",
       "image": {prjLogo},
-      "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "order_id": order.id,
       "handler": function (response){
           alert(response.razorpay_payment_id);
           alert(response.razorpay_order_id);
           alert(response.razorpay_signature);
-                 
-
+          window.location.href = '/history'; 
       },
-      "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
-          "name": "Gaurav Kumar", //your customer's name
+      "prefill": {
+          "name": "Gaurav Kumar",
           "email": "gaurav.kumar@example.com", 
-          "contact": "9000090000"  //Provide the customer's phone number for better conversion rates 
+          "contact": "9000090000"
       },
       "notes": {
           "address": "Razorpay Corporate Office"
@@ -118,10 +108,9 @@ const Timer = () => {
       alert(response.error.reason);
       alert(response.error.metadata.order_id);
       alert(response.error.metadata.payment_id);
-
     });
     rzp1.open();
-      };
+  };
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -140,7 +129,6 @@ const Timer = () => {
       clearInterval(interval);
     }
 
-    // Clean up the interval when the component unmounts
     return () => clearInterval(interval);
   }, [isActive]);
 
@@ -200,12 +188,6 @@ const Timer = () => {
         <div>Parking Spot: {content}</div>
         <div>Coordinate</div>
         <div>Date: {formattedDate}</div>
-        {/* <div>Starting Time: {startTime && startTime.toLocaleTimeString()}</div>
-        <div>Stopping Time:{stopTime &&  stopTime.toLocaleTimeString()}</div> */}
-        {/* {startTime && <div>Starting Time: {startTime.toLocaleTimeString()}</div>}
-        {stopTime && <div>Stopping Time: {stopTime.toLocaleTimeString()}</div>} */}
-        {/* {initialStartTime && <div>Starting Time: {initialStartTime.toLocaleTimeString()}</div>}
-        {stopTime && <div>Stopping Time: {stopTime.toLocaleTimeString()}</div>} */}
         {initialStartTime && <div>Starting Time: {initialStartTime.toLocaleTimeString()}</div>}
         {!isActive && stopTime && <div>Stopping Time: {stopTime.toLocaleTimeString()}</div>}
       </div>
