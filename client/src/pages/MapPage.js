@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import prjLogo from '../images/icon_car.png';
@@ -15,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const MapPage = () => {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyDesjkZgtOv8yvaqXsd6QNYZSvt3LKa2pQ",
+        googleMapsApiKey: "enter api key",
     });
 
     const containerStyle = {
