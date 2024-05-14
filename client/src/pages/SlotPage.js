@@ -8,7 +8,9 @@ import io from 'socket.io-client';
 
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient("https://hxapmewlaqrojlkcvpef.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4YXBtZXdsYXFyb2psa2N2cGVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU0MTc3MjAsImV4cCI6MjAzMDk5MzcyMH0.tSlkmFjsH8tgVX0PIkL8Cd_iyjr6LzJMdltjrUYyWss");
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const socket = io.connect('http://localhost:8000');
 

@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const MapPage = () => {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "enter api key",
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     });
 
     const containerStyle = {
