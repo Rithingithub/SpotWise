@@ -12,7 +12,7 @@ const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const socket = io.connect('http://localhost:8000');
+const socket = io.connect('https://spotwise.onrender.com');
 
 const SlotPage = () => {
   const [showPopup, setShowPopup] = useState(false);
