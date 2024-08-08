@@ -23,7 +23,7 @@ import Support from './components/support'
 
 SuperTokens.init({
   appInfo: {
-      apiDomain: "http://localhost:8000",
+      apiDomain: "https://spotwise.onrender.com",
       apiBasePath: "/auth",
       appName: "SpotWise",
   },

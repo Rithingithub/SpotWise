@@ -25,7 +25,7 @@ import MapPage from './pages/MapPage';
 
 SuperTokens.init({
   appInfo: {
-    apiDomain: "http://localhost:8000",
+    apiDomain: "https://spotwise.onrender.com",
     apiBasePath: "/auth",
     appName: "SpotWise",
   },

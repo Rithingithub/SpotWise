@@ -22,7 +22,7 @@ const receiptId = "qwsaql";
 
    
     try {
-      const response = await fetch("http://localhost:8000/order", {
+      const response = await fetch("https://spotwise.onrender.com/order", {
         method: "POST",
         body: JSON.stringify({
           amount,

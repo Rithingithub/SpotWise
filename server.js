@@ -25,7 +25,7 @@ supertokens.init({
   },
   appInfo: {
     appName: "SpotWise",
-    apiDomain: "http://localhost:8000",
+    apiDomain: "https://spotwise.onrender.com",
     websiteDomain: "http://localhost:3000",
     apiBasePath: "/auth",
     websiteBasePath: "/auth",
